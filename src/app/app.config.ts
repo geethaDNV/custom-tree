@@ -10,6 +10,7 @@ import {
 } from '@ngxs/router-plugin';
 import { NgxsModule } from '@ngxs/store';
 import { NgxsDispatchPluginModule } from '@ngxs-labs/dispatch-decorator';
+import { GlobalState } from './state/global.state';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
@@ -18,6 +19,15 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
      importProvidersFrom(
       NgxsModule.forRoot(
+        [
+          GlobalState,
+        ],
+        {
+          developmentMode: true,
+          compatibility: {
+            strictContentSecurityPolicy: true,
+          },
+        },
       ),
       NgxsDispatchPluginModule.forRoot(),
       NgxsReduxDevtoolsPluginModule.forRoot(),

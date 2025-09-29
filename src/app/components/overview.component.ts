@@ -1,9 +1,9 @@
 
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit, Signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Observable } from 'rxjs';
 import { SiteMasterListItemModel } from '../models/site-master';
-import { OverviewService } from '../services/overview.service';
+import { GlobalSiteMasterStoreService } from '../state/store-services/global-site-master-store.service';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
 	selector: 'app-overview',
@@ -12,11 +12,12 @@ import { OverviewService } from '../services/overview.service';
 	templateUrl: './overview.component.html',
 	styleUrls: ['./overview.component.scss']
 })
-export class OverviewComponent {
-	siteList$: Observable<SiteMasterListItemModel[]>;
-	private overviewService = inject(OverviewService);
+export class OverviewComponent implements OnInit {
+	private globalSiteMasterStoreService = inject(GlobalSiteMasterStoreService);
+	siteMasterList = this.globalSiteMasterStoreService.siteMasterList;
+	siteMasterLoaded = toSignal(this.globalSiteMasterStoreService.siteMasterLoaded$, { initialValue: false });
 
-	constructor() {
-		this.siteList$ = this.overviewService.getSiteMasterList();
+	ngOnInit(): void {
+		this.globalSiteMasterStoreService.loadGlobalSiteMasterList();
 	}
 }
