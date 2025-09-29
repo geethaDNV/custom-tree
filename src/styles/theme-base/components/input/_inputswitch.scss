@@ -1,0 +1,64 @@
+@use '../../mixins';
+
+@use 'sass:math';
+@use 'themes/mytheme/variables/form';
+@use 'themes/mytheme/variables/general';
+
+.p-inputswitch {
+  width: form.$inputSwitchWidth;
+  height: form.$inputSwitchHeight;
+
+  .p-inputswitch-slider {
+    background: form.$inputSwitchSliderOffBg;
+    transition: general.$formElementTransition;
+    border-radius: form.$inputSwitchBorderRadius;
+
+    &:before {
+      background: form.$inputSwitchHandleOffBg;
+      width: form.$inputSwitchHandleWidth;
+      height: form.$inputSwitchHandleHeight;
+      left: form.$inputSwitchSliderPadding;
+      margin-top: math.div(-1 * form.$inputSwitchHandleHeight, 2);
+      border-radius: form.$inputSwitchHandleBorderRadius;
+      transition-duration: general.$transitionDuration;
+    }
+  }
+
+  &.p-inputswitch-checked {
+    .p-inputswitch-slider:before {
+      transform: translateX(form.$inputSwitchHandleWidth);
+    }
+  }
+
+  &.p-focus {
+    .p-inputswitch-slider {
+      @include mixins.focused();
+    }
+  }
+
+  &:not(.p-disabled):hover {
+    .p-inputswitch-slider {
+      background: form.$inputSwitchSliderOffHoverBg;
+    }
+  }
+
+  &.p-inputswitch-checked {
+    .p-inputswitch-slider {
+      background: form.$inputSwitchSliderOnBg;
+
+      &:before {
+        background: form.$inputSwitchHandleOnBg;
+      }
+    }
+
+    &:not(.p-disabled):hover {
+      .p-inputswitch-slider {
+        background: form.$inputSwitchSliderOnHoverBg;
+      }
+    }
+  }
+}
+
+p-inputswitch.ng-dirty.ng-invalid > .p-inputswitch > .p-inputswitch-slider {
+  @include mixins.invalid-input();
+}

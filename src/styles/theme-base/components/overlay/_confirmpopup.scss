@@ -1,0 +1,75 @@
+@use 'sass:list';
+@use 'themes/mytheme/variables/general';
+@use 'themes/mytheme/variables/overlay';
+@use 'themes/mytheme/variables/panel';
+
+.p-confirm-popup {
+  background: overlay.$overlayContentBg;
+  color: panel.$panelContentTextColor;
+  border: overlay.$overlayContentBorder;
+  border-radius: general.$borderRadius;
+  box-shadow: overlay.$overlayContainerShadow;
+
+  .p-confirm-popup-content {
+    padding: panel.$panelContentPadding;
+  }
+
+  .p-confirm-popup-footer {
+    text-align: right;
+    padding: panel.$panelFooterPadding;
+
+    button {
+      margin: 0 general.$inlineSpacing 0 0;
+      width: auto;
+
+      &:last-child {
+        margin: 0;
+      }
+    }
+  }
+
+  &:after {
+    border: solid transparent;
+    border-color: rgba(overlay.$overlayContentBg, 0);
+    border-bottom-color: overlay.$overlayContentBg;
+  }
+
+  &:before {
+    border: solid transparent;
+
+    @if (list.nth(overlay.$overlayContentBorder, 2) == 'none') {
+      border-color: rgba(overlay.$overlayContentBg, 0);
+      border-bottom-color: overlay.$overlayContentBg;
+    } @else {
+      border-color: rgba(list.nth($overlayContentBorder, 3), 0);
+      border-bottom-color: list.nth($overlayContentBorder, 3);
+    }
+  }
+
+  &.p-confirm-popup-flipped {
+    &:after {
+      border-top-color: overlay.$overlayContentBg;
+    }
+
+    &:before {
+      @if (list.nth(overlay.$overlayContentBorder, 2) == 'none') {
+        border-top-color: overlay.$overlayContentBg;
+      } @else {
+        border-top-color: list.nth($overlayContentBorder, 3);
+      }
+    }
+  }
+
+  .p-confirm-popup-icon {
+    font-size: general.$primeIconFontSize * 1.5;
+
+    &.p-icon {
+      width: general.$primeIconFontSize * 1.5;
+      height: general.$primeIconFontSize * 1.5;
+    }
+  }
+
+  .p-confirm-popup-message {
+    margin-left: general.$inlineSpacing * 2;
+  }
+}

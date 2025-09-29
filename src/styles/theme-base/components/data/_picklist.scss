@@ -1,0 +1,129 @@
+@use '../../mixins';
+
+@use 'sass:list';
+@use 'themes/mytheme/variables/form';
+@use 'themes/mytheme/variables/general';
+@use 'themes/mytheme/variables/panel';
+
+.p-picklist {
+  .p-picklist-buttons {
+    padding: panel.$panelContentPadding;
+
+    .p-button {
+      margin-bottom: general.$inlineSpacing;
+    }
+  }
+
+  .p-picklist-list-wrapper {
+    background: panel.$panelContentBg;
+    border: panel.$panelContentBorder;
+    border-radius: general.$borderRadius;
+    transition: general.$formElementTransition;
+    outline-color: transparent;
+
+    &.p-focus {
+      @include mixins.focused-input();
+    }
+  }
+
+  .p-picklist-header {
+    color: panel.$panelHeaderTextColor;
+    padding: panel.$panelHeaderPadding;
+    font-weight: panel.$panelHeaderFontWeight;
+
+    .p-picklist-title {
+      font-weight: panel.$panelHeaderFontWeight;
+    }
+  }
+
+  .p-picklist-filter-container {
+    padding: panel.$panelHeaderPadding;
+    background: panel.$panelContentBg;
+    border: panel.$panelHeaderBorder;
+    border-bottom: 0 none;
+
+    .p-picklist-filter-input {
+      padding-right: list.nth(form.$inputPadding, 2) +
+        general.$primeIconFontSize;
+    }
+
+    .p-picklist-filter-icon {
+      right: list.nth(form.$inputPadding, 2);
+      color: form.$inputIconColor;
+    }
+  }
+
+  .p-picklist-list {
+    color: panel.$panelContentTextColor;
+    padding: form.$inputListPadding;
+    outline: 0 none;
+
+    &:not(:first-child) {
+      border-top: panel.$panelContentBorder;
+    }
+    .p-picklist-item {
+      padding: form.$inputListItemPadding;
+      margin: form.$inputListItemMargin;
+      border: form.$inputListItemBorder;
+      color: form.$inputListItemTextColor;
+      background: form.$inputListItemBg;
+      transition: general.$listItemTransition;
+
+      &:not(.p-highlight):hover {
+        background: form.$inputListItemHoverBg;
+        color: form.$inputListItemTextHoverColor;
+      }
+
+      &.p-focus {
+        color: form.$inputListItemTextFocusColor;
+        background: form.$inputListItemFocusBg;
+      }
+
+      &.p-highlight {
+        color: general.$highlightTextColor;
+        background: general.$highlightBg;
+
+        &.p-focus {
+          background: general.$highlightFocusBg;
+        }
+      }
+    }
+
+    .p-picklist-empty-message {
+      padding: form.$inputListItemPadding;
+      color: form.$inputListItemTextColor;
+    }
+
+    &:not(.cdk-drop-list-dragging) {
+      .p-picklist-item {
+        &:not(.p-highlight):hover {
+          background: form.$inputListItemHoverBg;
+          color: form.$inputListItemTextHoverColor;
+        }
+      }
+    }
+  }
+
+  &.p-picklist-striped {
+    .p-picklist-list {
+      .p-picklist-item:nth-child(even) {
+        background: panel.$panelContentEvenRowBg;
+
+        &:hover {
+          background: form.$inputListItemHoverBg;
+        }
+      }
+    }
+  }
+}
+
+.p-picklist-item {
+  &.cdk-drag-preview {
+    padding: form.$inputListItemPadding;
+    box-shadow: form.$inputOverlayShadow;
+    border: form.$inputListItemBorder;
+    color: form.$inputListItemTextColor;
+    background: panel.$panelContentBg;
+    margin: 0;
+  }
+}

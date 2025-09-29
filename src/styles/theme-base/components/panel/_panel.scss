@@ -1,0 +1,68 @@
+@use '../../mixins';
+
+@use 'themes/mytheme/variables/general';
+@use 'themes/mytheme/variables/panel';
+
+.p-panel {
+  .p-panel-header {
+    border: panel.$panelHeaderBorder;
+    padding: panel.$panelHeaderPadding;
+    background: panel.$panelHeaderBg;
+    color: panel.$panelHeaderTextColor;
+    border-top-right-radius: general.$borderRadius;
+    border-top-left-radius: general.$borderRadius;
+
+    .p-panel-title {
+      font-weight: panel.$panelHeaderFontWeight;
+    }
+
+    .p-panel-header-icon {
+      @include mixins.action-icon();
+    }
+  }
+
+  &.p-panel-toggleable {
+    .p-panel-header {
+      padding: panel.$panelToggleableHeaderPadding;
+    }
+  }
+
+  .p-panel-content {
+    padding: panel.$panelContentPadding;
+    border: panel.$panelContentBorder;
+    background: panel.$panelContentBg;
+    color: panel.$panelContentTextColor;
+    border-top: 0 none;
+
+    &:last-child {
+      border-bottom-right-radius: general.$borderRadius;
+      border-bottom-left-radius: general.$borderRadius;
+    }
+  }
+
+  .p-panel-footer {
+    padding: panel.$panelFooterPadding;
+    border: panel.$panelFooterBorder;
+    background: panel.$panelFooterBg;
+    color: panel.$panelFooterTextColor;
+    border-bottom-right-radius: general.$borderRadius;
+    border-bottom-left-radius: general.$borderRadius;
+    border-top: 0 none;
+  }
+
+  .p-panel-icons-end {
+    order: 2;
+    margin-left: auto;
+  }
+
+  .p-panel-icons-start {
+    order: 0;
+    margin-right: general.$inlineSpacing;
+  }
+
+  .p-panel-icons-center {
+    order: 2;
+    width: 100%;
+    text-align: center;
+  }
+}

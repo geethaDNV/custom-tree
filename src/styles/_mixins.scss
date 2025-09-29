@@ -1,0 +1,131 @@
+@use 'pattern/colors';
+@use 'pattern/utility';
+@use 'variables';
+/*
+Define global mixins to be reused across components.
+*/
+
+@mixin shared-grid-internal($spacing) {
+  margin-left: $spacing;
+  margin-right: $spacing;
+
+  ::ng-deep {
+    .p-paginator .p-dropdown {
+      margin-right: 0;
+      padding: 0;
+    }
+
+    .p-paginator-right-content {
+      margin-left: $spacing;
+
+      @media screen and (max-width: $breakpoint-sm) {
+        margin-left: auto;
+      }
+    }
+  }
+}
+
+@mixin shared-grid($spacing-list: utility.get-rem(38),
+  $spacing-details: utility.get-rem(88)) {
+  shared-grid {
+    &.table-list {
+      @include shared-grid-internal($spacing-list);
+    }
+
+    &.table-details {
+      @include shared-grid-internal($spacing-details);
+    }
+  }
+}
+
+@mixin grid-parent {
+  .page-title {
+    font-family: 'DNVDisplay';
+    font-weight: 400;
+    font-size: utility.get-rem(36);
+    text-transform: uppercase;
+    color: $primary-dnv-dark-blue;
+    padding: 0 utility.get-rem(40) utility.get-rem(41) utility.get-rem(38);
+    background-color: $home-header-bg;
+  }
+
+  @media screen and (max-width: $breakpoint-md) {
+    .page-title {
+      padding: 0 utility.get-rem(32) utility.get-rem(32) utility.get-rem(32);
+      font-size: utility.get-rem(32);
+    }
+  }
+
+  @media screen and (max-width: $breakpoint-sm) {
+    .page-title {
+      padding: 0 utility.get-rem(20) utility.get-rem(28) utility.get-rem(20);
+      font-size: utility.get-rem(28);
+    }
+  }
+}
+
+@mixin states-colors {
+  &.misty-rose {
+    background-color: colors.get-color('ErrorRed95');
+  }
+
+  &.light-yellow {
+    background-color: variables.$light-yellow;
+  }
+
+  &.light-cyan {
+    background-color: colors.get-color('InfoBlue95');
+  }
+
+  &.pastel-green {
+    background-color: variables.$pastel-green;
+  }
+
+  &.sunflower-yellow {
+    color: colors.get-color('GraphYellow');
+  }
+
+  &.fern-green {
+    color: variables.$fern-green;
+  }
+
+  &.ash-grey {
+    color: variables.$ash-grey;
+  }
+
+  &.vivid-orange {
+    color: colors.get-color('AlertOrange50');
+  }
+
+  &.graph-orange {
+    color: colors.get-color('GraphOrange');
+  }
+
+  &.summer-sky {
+    color: colors.get-color('GraphBlue');
+  }
+
+  &.firebrick-red {
+    color: colors.get-color('GraphRed');
+  }
+
+  &.forest-green {
+    color: colors.get-color('GraphGreen');
+  }
+
+  &.sunshine-yellow {
+    color: colors.get-color('AttentionYellow50');
+  }
+
+  &.crimson-flame {
+    color: colors.get-color('EnergyRed');
+  }
+
+  &.pewter-gray {
+    color: colors.get-color('GraphGrey');
+  }
+
+  &.darker-cyan {
+    color: colors.get-color('InfoBlue50')
+  }
+}

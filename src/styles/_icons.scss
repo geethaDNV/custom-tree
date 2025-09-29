@@ -1,0 +1,31 @@
+@font-face {
+  font-family: 'DNVicons';
+  font-style: normal;
+  src: url('../assets/icons/DNVicons.ttf') format('truetype'),
+      url('../assets/icons/DNVicons.woff') format('woff');
+}
+
+[class^="pi-custom-"],
+[class*="pi-custom-"] {
+  font-family: 'DNVicons';
+}
+
+.pi-custom-file-check:before {
+  content: "\e900";
+}
+
+.pi-custom-clipboard-edit:before {
+  content: "\e901";
+}
+
+.pi-custom-clipboard-results:before {
+  content: "\e902";
+}
+
+.pi-custom-check-list:before {
+  content: "\e903";
+}
+
+.pi-custom-certified:before {
+  content: "\e905";
+}

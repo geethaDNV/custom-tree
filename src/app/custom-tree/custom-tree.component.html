@@ -1,0 +1,41 @@
+<div class="tree-container">
+    @for (node of nodes(); track node.key) {
+        <div class="tree-node">
+            <div class="node-content"
+             [style.padding-left.px]="(node.depth ?? level()) * 20">
+                @if (node.children && node.children.length > 0) {
+                    <button class="expand-toggle" type="button"
+                        [attr.aria-expanded]="node.expanded" (click)="toggleExpansion(node); $event.stopPropagation()">
+                        @if (!node.expanded) {
+                            <svg fill="none" height="18" viewBox="0 0 18 18" width="18" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M7 5l4 4-4 4" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                            </svg>
+                        }
+                        @if (node.expanded) {
+                            <svg fill="none" height="18" viewBox="0 0 18 18" width="18" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M5 7l4 4 4-4" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                            </svg>
+                        }
+                    </button>
+                }
+                @if (!node.children || node.children.length === 0) {
+                    <span class="expand-spacer"></span>
+                }
+                <input class="node-checkbox" type="checkbox" [attr.aria-label]="'Select ' + node.label"
+                    [checked]="node.selected" [id]="'checkbox-' + node.key" [indeterminate]="node.indeterminate"
+                    (change)="onCheckboxChange(node, $event)" />
+                <label class="node-label" [for]="'checkbox-' + node.key">
+                    {{ node.label }}
+                </label>
+            </div>
+            @if (node.expanded && node.children && node.children.length > 0) {
+                <div class="children">
+                    <shared-tree [level]="(node.depth ?? 0) + 1" [nodes]="node.children"
+                        (expandedStateChange)="onExpandChildStateChange()"
+                        (selectionChange)="onChildSelectionChange($event)">
+                    </shared-tree>
+                </div>
+            }
+        </div>
+    }
+</div>

@@ -1,0 +1,101 @@
+@use 'sass:map';
+
+$primary-colors: (
+  'DarkBlue': #0f204b,
+  'SeaBlue': #003591,
+  'Cyan': #009fda,
+  'SkyBlue80': #99d9f0,
+  'LandGreen': #3f9c35,
+  'UiWhite': #ffffff,
+  'UiBlack': #000000,
+);
+
+$secondary-colors: (
+  'DigiGreen78': #91ffb4,
+  'Pine': #2b6173,
+  'Earth': #f2e6d5,
+  'Eucalyptus': #15c2bb,
+  'Sunflower': #fff377,
+  'Lavender': #a1aae6,
+  'Sandstone': #cccbc9,
+  'Terracotta': #b56700,
+  'WarmGrey': #988f86,
+  'EnergyRed': #eb2a34,
+);
+
+$sky-blue-colors: (
+  'SkyBlue95': #e9f7fc,
+  'SkyBlue90': #d3eef8,
+  'SkyBlue80': #99d9f0,
+  'SkyBlue70': #7acdeb,
+  'SkyBlue60': #4dbde5,
+  'SkyBlue50': #21acde,
+  'SkyBlue40': #1a8ab2,
+  'SkyBlue30': #146785,
+  'SkyBlue20': #0d4559,
+  'SkyBlue10': #07222c,
+);
+
+$sandstone-colors: (
+  'Sandstone95': #f3f2f2,
+  'Sandstone90': #e6e6e5,
+  'Sandstone80': #cbcac8,
+  'Sandstone70': #b5b3b0,
+  'Sandstone60': #9c9a96,
+  'Sandstone50': #83817c,
+  'Sandstone40': #696763,
+  'Sandstone30': #4f4d4a,
+  'Sandstone20': #343332,
+  'Sandstone10': #1a1a19,
+);
+
+$risk-colors: (
+  'AlertOrange50': #f97316,
+  'ErrorRed50': #eb2a34,
+  'AttentionYellow50': #ffe900,
+  'SuccessGreen50': #3f9c35,
+  'InfoBlue50': #33c8ff,
+  'AlertOrange95': #fef1e8,
+  'ErrorRed95': #fde8e9,
+  'AttentionYellow95': #fffde5,
+  'SuccessGreen95': #edf9ec,
+  'InfoBlue95': #e5f8ff,
+);
+
+$chart-colors: (
+  'GraphGreen': #65b05d,
+  'GraphYellow': #fff377,
+  'GraphOrange': #fa8f45,
+  'GraphRed': #d3262f,
+  'GraphBlue': #99d9f0,
+  'GraphGrey': #cbcac8,
+);
+
+$other-colors: (
+  'DisabledGrey10': #707070,
+  'AliceBlue': #d9edf7,
+);
+
+@function get-all-color-maps($maps...) {
+  $output: ();
+
+  @each $map in $maps {
+    $output: map.merge($output, $map);
+  }
+
+  @return $output;
+}
+
+$colors: get-all-color-maps(
+  $primary-colors,
+  $secondary-colors,
+  $sky-blue-colors,
+  $sandstone-colors,
+  $risk-colors,
+  $chart-colors,
+  $other-colors
+);
+
+@function get-color($name) {
+  @return map.get($colors, $name);
+}

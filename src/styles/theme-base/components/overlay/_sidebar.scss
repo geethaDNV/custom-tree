@@ -1,0 +1,32 @@
+@use '../../mixins';
+
+@use 'themes/mytheme/variables/overlay';
+@use 'themes/mytheme/variables/panel';
+
+.p-sidebar {
+  background: overlay.$overlayContentBg;
+  color: panel.$panelContentTextColor;
+  border: overlay.$overlayContentBorder;
+  box-shadow: overlay.$overlayContainerShadow;
+
+  .p-sidebar-header {
+    padding: panel.$panelHeaderPadding;
+
+    .p-sidebar-close,
+    .p-sidebar-icon {
+      @include mixins.action-icon();
+    }
+
+    & + .p-sidebar-content {
+      padding-top: 0;
+    }
+  }
+
+  .p-sidebar-content {
+    padding: panel.$panelContentPadding;
+  }
+
+  .p-sidebar-footer {
+    padding: panel.$panelHeaderPadding;
+  }
+}

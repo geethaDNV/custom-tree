@@ -1,0 +1,101 @@
+@use '../../mixins';
+
+@use 'pattern/utility';
+@use 'variables';
+@use 'themes/mytheme/variables/general';
+@use 'themes/mytheme/variables/panel';
+
+.p-accordion {
+  .p-accordion-header {
+    .p-accordion-header-link {
+      padding: panel.$accordionHeaderPadding 0;
+      color: variables.$primary-dnv-medium-blue;
+      font-weight: 600;
+      border-radius: general.$borderRadius;
+      transition: general.$listItemTransition;
+      font-size: utility.get-rem(14);
+
+      .p-accordion-toggle-icon {
+        margin-right: general.$inlineSpacing;
+      }
+
+      .p-accordion-toggle-icon-end {
+        margin-left: general.$inlineSpacing;
+      }
+    }
+
+    &:not(.p-disabled) {
+      .p-accordion-header-link {
+        &:focus-visible {
+          @include mixins.focused-inset();
+        }
+      }
+    }
+
+    &:not(.p-disabled).p-highlight {
+      .p-accordion-header-link {
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+    }
+  }
+
+  .p-accordion-content {
+    padding: utility.get-rem(16);
+    background: variables.$basic-tones-dnv-white;
+    color: variables.$black;
+    border-radius: utility.get-rem(10);
+  }
+
+  p-accordiontab {
+    .p-accordion-tab {
+      margin-bottom: panel.$accordionSpacing;
+    }
+
+    @if panel.$accordionSpacing == 0 {
+      .p-accordion-header {
+        .p-accordion-header-link {
+          border-radius: 0;
+        }
+      }
+
+      &:not(:first-child) {
+        .p-accordion-header {
+          .p-accordion-header-link {
+            border-top: 0 none;
+          }
+
+          &:not(.p-highlight):not(.p-disabled):hover,
+          &:not(.p-disabled).p-highlight:hover {
+            .p-accordion-header-link {
+              border-top: 0 none;
+            }
+          }
+        }
+      }
+
+      &:first-child {
+        .p-accordion-header {
+          .p-accordion-header-link {
+            border-top-right-radius: general.$borderRadius;
+            border-top-left-radius: general.$borderRadius;
+          }
+        }
+      }
+
+      &:last-child {
+        .p-accordion-header:not(.p-highlight) {
+          .p-accordion-header-link {
+            border-bottom-right-radius: general.$borderRadius;
+            border-bottom-left-radius: general.$borderRadius;
+          }
+        }
+
+        .p-accordion-content {
+          border-bottom-right-radius: general.$borderRadius;
+          border-bottom-left-radius: general.$borderRadius;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,381 @@
+@use '../../../styles/pattern/colors' as colors;
+@use '../../../styles/pattern/mixture' as *;
+@use '../../../styles/pattern/typography' as *;
+@use '../../../styles/pattern/utility' as utility;
+
+:host {
+    height: utility.get-rem(45);
+}
+
+.tree-dropdown {
+    position: relative;
+    width: 100%;
+    min-width: 220px;
+    height: 45px;
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 12px;
+    font-weight: 100;
+    color: #0f204b
+}
+
+.tree-dropdown-input {
+    max-width: 100%;
+    min-height: 45px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #bdbdbd;
+    border-radius: 8px;
+    background: #fff;
+    color: #222;
+    font-size: 15px;
+    font-weight: 400;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    height: 42px;
+    padding: 0 16px;
+    &::placeholder {
+        color: #b0b3c6;
+        font-size: 15px;
+        font-weight: 400;
+        opacity: 1;
+        line-height: 42px;
+    }
+}
+
+.tree-dropdown-input:focus,
+.tree-dropdown-input.active {
+    border-color: #b3d8fd;
+    box-shadow: 0 0 0 2px #e3f0fc;
+    outline: none;
+}
+
+.tree-dropdown-label {
+    flex: 1 1 0%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    text-align: left;
+    padding-right: 8px;
+    color: #6c757d
+}
+
+.tree-dropdown-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 8px;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    align-self: center;
+    transition: background 0.2s;
+}
+
+.tree-dropdown-arrow svg {
+    display: block;
+    margin: auto;
+    width: 18px;
+    height: 18px;
+}
+
+.tree-dropdown-panel {
+    background: #fff;
+    font-family: "Nunito Sans", "Segoe UI", Arial, sans-serif;
+    color: #222;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: #f3f2f2;
+    border: 1.5px solid #dee2e6;
+    border-radius: 14px;
+    box-shadow: 0 8px 32px rgba(0, 115, 230, 0.10);
+    padding: 0;
+    max-height: 450px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+}
+
+.tree-dropdown-panel-inner {
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 360px;
+}
+
+.tree-all-option {
+    display: flex;
+    align-items: center;
+    padding: 20px 16px;
+    height: 40px;
+    border-radius: 14px 14px 0 0;
+    background: #f3f2f2;
+}
+
+.tree-all-option label {
+    color: #0f204b;
+    font-weight: 400;
+}
+
+.tree-all-option input[type='checkbox'] {
+  margin-right: 10px;
+  accent-color: #003591;
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  border: 1.5px solid #bfc7d1;
+  background: #fff;
+  transition: border-color 0.2s;
+  appearance: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.tree-all-option input[type='checkbox']:checked,
+.tree-all-option input[type='checkbox']:indeterminate {
+  background-color: #003591;
+  border-color: #003591;
+  box-shadow: none;
+  &:hover {
+    border-color: #1976d2;
+    background: #1976d2;
+    color: #ffffff;
+  }
+}
+.tree-all-option input[type='checkbox']:checked::after {
+  content: '';
+  display: block;
+  width: 8px;
+  height: 4px;
+  border-left: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transform: translateY(-1px) rotate(-45deg);
+  position: absolute;
+  left: 6px;
+  top: 6px;
+}
+.tree-all-option input[type='checkbox']:indeterminate::after {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 1px;
+  background: #fff;
+  position: absolute;
+  left: 6px;
+  top: 11px;
+  border-radius: 1px;
+  transform: translateY(-1px);
+}
+.tree-dropdown-search {
+    display: flex;
+    align-items: center;
+    padding: 25px 16px;
+    height: 40px;
+    background: #f3f2f2;
+    position: relative;
+}
+
+.tree-dropdown-searchbox {
+    flex: 1 1 0%;
+    height: 38px;
+    width: 100%;;
+    padding: 0 36px 0 12px;
+    font-size: 15px;
+    font-weight: 400;
+    color: #222;
+    background: #fff;
+    border: 1.5px solid #bfc7d1;
+    border-radius: 8px;
+    line-height: 32px;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+    &::placeholder {
+        color: #b0b3c6;
+        opacity: 1;
+        font-size: 15px;
+        line-height: 32px;
+        vertical-align: middle;
+    }
+    &:focus, &:focus-visible {
+        border-color: #009fda;
+        outline: none;
+    }
+}
+
+.tree-dropdown-search-icon {
+    position: absolute;
+    right: 25px;
+    pointer-events: none;
+    color: #0073e6;
+    display: flex;
+    align-items: center;
+    width: 12px;
+    height: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
+:host ::ng-deep .node-content {
+    background: #fff;
+    font-family: "Nunito Sans", "Segoe UI", Arial, sans-serif;
+    color: #222;
+    padding: 0 16px;
+    min-height: 40px;
+    font-size: 15px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    min-height: 40px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.15s;
+}
+:host ::ng-deep .expand-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 2px 6px;
+    margin-right: 8px;
+    font-size: 14px;
+  color: colors.get-color('SeaBlue');
+    border-radius: 2px;
+    min-width: 20px;
+    text-align: center;
+    transition: background-color 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+:host ::ng-deep .expand-toggle:hover {
+    background-color: #f3f2f2;
+}
+:host ::ng-deep .expand-spacer {
+    width: 28px;
+    height: 20px;
+    display: inline-block;
+}
+:host ::ng-deep .node-checkbox {
+  margin-right: 10px;
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  min-height: 24px;
+  accent-color: #003591;
+  border-radius: 4px;
+  border: 1.5px solid #bfc7d1;
+  background: #fff;
+  transition: border-color 0.2s, background-color 0.2s;
+  appearance: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: none;
+}
+:host ::ng-deep .node-checkbox:checked,
+:host ::ng-deep .node-checkbox:indeterminate {
+  background-color: #003591;
+  border-color: #003591;
+  box-shadow: none;
+}
+:host ::ng-deep .node-checkbox:focus {
+  border-color: #1976d2;
+  outline: 2px solid #1976d2;
+  outline-offset: 1px;
+}
+:host ::ng-deep .node-label {
+  cursor: pointer;
+  flex: 1;
+  user-select: none;
+  padding: 2px 4px;
+  border-radius: 2px;
+  transition: background 0.15s;
+}
+:host ::ng-deep .node-label.p-highlight {
+  color: #003591 !important;
+  font-weight: 600 !important;
+}
+:host ::ng-deep .node-label:hover {
+    background-color: #f3f2f2;
+}
+
+.no-data-available {
+    padding: 16px 20px;
+    color: #1a1a1a;
+    font-size: 14px;
+    background: #fff;
+    border-radius: 0 0 12px 12px;
+    text-align: left;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.p-tooltip .p-tooltip-text, .custom-tooltip {
+  margin-top: 8px !important;
+  margin-bottom: 0 !important;
+}
+
+:host ::ng-deep .node-checkbox, .tree-all-option input[type='checkbox'] {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  min-height: 24px;
+  border-radius: 4px;
+  border: 1.5px solid #bfc7d1;
+  background: #fff;
+  transition: border-color 0.2s, background-color 0.2s;
+  position: relative;
+  vertical-align: middle;
+  cursor: pointer;
+}
+:host ::ng-deep .node-checkbox:checked,
+:host ::ng-deep .node-checkbox:indeterminate,
+.tree-all-option input[type='checkbox']:checked,
+.tree-all-option input[type='checkbox']:indeterminate {
+  background-color: #003591;
+  border-color: #003591;
+  box-shadow: none;
+}
+:host ::ng-deep .node-checkbox:checked::after,
+.tree-all-option input[type='checkbox']:checked::after {
+      content: "";
+    display: block;
+    width: 10px;
+    height: 5px;
+    border-left: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    transform: rotate(-45deg);
+    position: absolute;
+    left: 6px;
+    top: 6px;
+
+ 
+}
+:host ::ng-deep .node-checkbox:indeterminate::after,
+.tree-all-option input[type='checkbox']:indeterminate::after {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 1px;
+  background: #fff;
+  position: absolute;
+  left: 6px;
+  top: 11px;
+  border-radius: 1px;
+  transform: translateY(-1px);
+}
+:host ::ng-deep .node-checkbox:focus,
+.tree-all-option input[type='checkbox']:focus {
+  outline-offset: 1px;
+}
+

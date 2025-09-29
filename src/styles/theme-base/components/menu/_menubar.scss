@@ -1,0 +1,150 @@
+@use '../../mixins';
+
+@use 'sass:list';
+@use 'themes/mytheme/variables/general';
+@use 'themes/mytheme/variables/menu';
+
+.p-menubar {
+  padding: menu.$horizontalMenuPadding;
+  background: menu.$horizontalMenuBg;
+  color: menu.$horizontalMenuTextColor;
+  border: menu.$horizontalMenuBorder;
+  border-radius: general.$borderRadius;
+
+  .p-menubar-root-list {
+    outline: 0 none;
+
+    > .p-menuitem {
+      @include mixins.horizontal-rootmenuitem();
+    }
+  }
+
+  .p-menuitem {
+    @include mixins.menuitem();
+  }
+
+  .p-submenu-list {
+    padding: menu.$verticalMenuPadding;
+    background: menu.$overlayMenuBg;
+    border: menu.$overlayMenuBorder;
+    box-shadow: menu.$overlayMenuShadow;
+    width: menu.$menuWidth;
+
+    .p-menuitem-separator {
+      border-top: general.$divider;
+      margin: menu.$menuSeparatorMargin;
+    }
+
+    .p-submenu-icon {
+      font-size: menu.$menuitemSubmenuIconFontSize;
+    }
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .p-menubar {
+    position: relative;
+
+    .p-menubar-button {
+      display: flex;
+      width: general.$actionIconWidth;
+      height: general.$actionIconHeight;
+      color: menu.$horizontalMenuRootMenuitemIconColor;
+      border-radius: general.$actionIconBorderRadius;
+      transition: general.$actionIconTransition;
+
+      &:hover {
+        color: menu.$horizontalMenuRootMenuitemIconHoverColor;
+        background: menu.$horizontalMenuRootMenuitemHoverBg;
+      }
+
+      &:focus {
+        @include mixins.focused();
+      }
+    }
+
+    .p-menubar-root-list {
+      position: absolute;
+      display: none;
+      padding: menu.$verticalMenuPadding;
+      background: menu.$overlayMenuBg;
+      border: menu.$overlayMenuBorder;
+      box-shadow: menu.$overlayMenuShadow;
+      width: 100%;
+
+      .p-menuitem-separator {
+        border-top: general.$divider;
+        margin: menu.$menuSeparatorMargin;
+      }
+
+      .p-submenu-icon {
+        font-size: menu.$menuitemSubmenuIconFontSize;
+      }
+
+      .p-menuitem {
+        width: 100%;
+        position: static;
+
+        .p-menuitem-content {
+          .p-menuitem-link {
+            .p-submenu-icon {
+              margin-left: auto;
+              transition: transform general.$transitionDuration;
+            }
+          }
+        }
+
+        &.p-menuitem-active {
+          > .p-menuitem-content {
+            > .p-menuitem-link {
+              > .p-submenu-icon {
+                transform: rotate(-180deg);
+              }
+            }
+          }
+        }
+      }
+
+      .p-submenu-list {
+        width: 100%;
+        position: static;
+        box-shadow: none;
+        border: 0 none;
+
+        .p-submenu-icon {
+          transition: transform general.$transitionDuration;
+          transform: rotate(90deg);
+        }
+
+        .p-menuitem-active {
+          > .p-menuitem-content {
+            > .p-menuitem-link {
+              > .p-submenu-icon {
+                transform: rotate(-90deg);
+              }
+            }
+          }
+        }
+      }
+
+      .p-menuitem {
+        width: 100%;
+        position: static;
+      }
+
+      @include mixins.nested-submenu-indents(
+        list.nth(menu.$menuitemPadding, 1),
+        2,
+        10
+      );
+    }
+
+    &.p-menubar-mobile-active .p-menubar-root-list {
+      display: flex;
+      flex-direction: column;
+      top: 100%;
+      left: 0;
+      z-index: 1;
+    }
+  }
+}

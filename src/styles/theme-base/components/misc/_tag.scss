@@ -1,0 +1,55 @@
+@use 'sass:math';
+@use 'pattern/utility';
+@use 'variables';
+@use 'themes/mytheme/variables/button';
+@use 'themes/mytheme/variables/general';
+@use 'themes/mytheme/variables/misc';
+
+.p-tag {
+  background: misc.$badgeBg;
+  color: misc.$badgeTextColor;
+  font-size: misc.$badgeFontSize;
+  font-weight: misc.$badgeFontWeight;
+  padding: misc.$tagPadding;
+  border-radius: general.$borderRadius;
+
+  &.p-tag-success {
+    background-color: button.$successButtonBg;
+    color: button.$successButtonTextColor;
+  }
+
+  &.p-tag-info {
+    background-color: button.$infoButtonBg;
+    color: button.$infoButtonTextColor;
+  }
+
+  &.p-tag-warning {
+    background-color: button.$warningButtonBg;
+    color: button.$warningButtonTextColor;
+  }
+
+  &.p-tag-danger {
+    background-color: button.$dangerButtonBg;
+    color: button.$dangerButtonTextColor;
+  }
+
+  .p-tag-icon {
+    margin-right: math.div(general.$inlineSpacing, 2);
+    font-size: misc.$badgeFontSize;
+  }
+
+  .p-icon {
+    width: misc.$badgeFontSize;
+    height: misc.$badgeFontSize;
+  }
+
+  &.active-filter-tag {
+    background-color: variables.$active-filter-tag-bg;
+    color: variables.$active-filter-tag-text;
+    padding: 0;
+
+    .p-tag-rounded {
+      border-radius: utility.get-rem(16);
+    }
+  }
+}

@@ -1,0 +1,103 @@
+@use 'pattern/utility';
+
+:root {
+  --dnv-font-base-unitless: 12;
+  --dnv-font-base: 12px;
+  --dnv-font-heading-xxl: 48px;
+  --dnv-font-heading-xl: 36px;
+  --dnv-font-heading-l: 28px;
+  --dnv-font-heading-m: 24px;
+  --dnv-font-heading-s: 20px;
+  --dnv-font-text-l: 14px;
+  --dnv-font-text-m: 12px;
+  --dnv-font-text-s: 10px;
+  --dnv-font-text-xs: 8px;
+  --dnv-font-label-l: 12px;
+  --dnv-font-label-m: 10px;
+  --dnv-font-label-s: 8px;
+  --dnv-font-button-l: 14px;
+  --dnv-font-button-s: 12px;
+  --dnv-gutter-base-unitless: 8;
+}
+
+/*
+Store all your global variables, such as colors, font sizes, breakpoints, and other reusable values.
+*/
+
+$basic-tones-dnv-dark: #1a1a19;
+$basic-tones-dnv-light: #e6e6e5;
+$basic-tones-dnv-ultra-light: #f8f7f7;
+$basic-tones-dnv-medium: #908d89;
+$basic-tones-dnv-medium-light: #cccbc9;
+$basic-tones-dnv-white: #ffffff;
+$basic-tones-dnv-medium-dark: #4f4d4a;
+$basic-tones-dnv-medium-gray: #707070;
+$primary-dnv-dark-blue: #0f204b;
+$primary-dnv-medium-blue: #003591;
+$primary-dnv-sky-light-blue: #e9f7fc;
+$background-white: #fbf8f3;
+$table-body-row-even-bg: #fbfbfb;
+$active-filter-tag-bg: #f2fafd;
+$active-filter-tag-text: #4b5563;
+$home-header-bg: #d9edf7;
+$page-details-header-bg: #ecf6fb;
+$black: #000000;
+$deep-saphire-blue: #0f378b;
+$sky-breeze-blue: #a8d7ee;
+$sky-blue: #99d9f0;
+$midnight-navy: #132049;
+$regal-blue: #1e3a8a;
+$dusk-blue: #1e293b;
+$deep-blue-shade:#13348d;
+$button-disabled-text: #707070;
+$stone-gray: #9c9a96;
+$stone-gray-alt: #ddd;
+$selected-row-bg: #009fda0f;
+
+$remSizeNo: 14;
+$remSize: $remSizeNo + px;
+
+// for max-width usage
+$breakpoint-sm: 574px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1199px;
+$breakpoint-rec-zoom: 1299px;
+
+
+$fern-green: #5c9a40;
+$ash-grey: #b6b4b1;
+$light-yellow: #fef9b9;
+$pastel-green: #d1eac8;
+$concrete: #f3f2f2;
+$forest-green-light: #1d7613;
+
+$button-focus-shadow: none;
+$default-border-radius: 10px;
+$button-border-radius: $default-border-radius;
+$border-radius-checkbox: 4px;
+$button-font-weight: 700;
+$button-primary-text: $basic-tones-dnv-white;
+$button-disabled-text: $basic-tones-dnv-medium-gray;
+$button-disabled-background: $basic-tones-dnv-light;
+
+$breadcrumb-icon-separator-color: #696763;
+
+$input-disabled-border: #cbcac8;
+
+$chart-header-overdue-bg: #c54d421a;
+$chart-header-overdue-text: #c54d42;
+$chart-header-becoming-overdue-bg: #f9731614;
+$chart-header-becoming-overdue-text: #df6008;
+
+/*
+Defines horizontal margins for shared-grid component when used on various pages
+for multiple screen sizes.
+*/
+$table-list-margin-size: utility.get-rem(38);
+$table-list-margin-size-sm: utility.get-rem(20);
+$table-list-margin-size-md: utility.get-rem(32);
+$table-details-margin-size: utility.get-rem(88);
+$table-details-margin-size-sm: utility.get-rem(16);
+$table-details-margin-size-md: utility.get-rem(24);
+$table-details-margin-size-xl: utility.get-rem(32);

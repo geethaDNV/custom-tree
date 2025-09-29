@@ -1,0 +1,47 @@
+@use '../../mixins';
+
+@use 'themes/mytheme/variables/general';
+@use 'themes/mytheme/variables/menu';
+
+.p-breadcrumb {
+  background: menu.$breadcrumbBg;
+  border: menu.$breadcrumbBorder;
+  border-radius: general.$borderRadius;
+  padding: 0;
+
+  .p-breadcrumb-list {
+    li {
+      .p-menuitem-link {
+        transition: general.$listItemTransition;
+        border-radius: general.$borderRadius;
+
+        &:focus-visible {
+          @include mixins.focused();
+        }
+
+        .p-menuitem-text {
+          color: menu.$breadcrumbItemTextColor;
+        }
+
+        .p-menuitem-icon {
+          color: menu.$breadcrumbItemIconColor;
+        }
+      }
+
+      &.p-menuitem-separator {
+        margin: 0 general.$inlineSpacing;
+        color: menu.$breadcrumbSeparatorColor;
+      }
+
+      &:last-child {
+        .p-menuitem-text {
+          color: menu.$breadcrumbLastItemTextColor;
+        }
+
+        .p-menuitem-icon {
+          color: menu.$breadcrumbLastItemIconColor;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,79 @@
+@use '../../mixins';
+
+@use 'pattern/colors';
+@use 'pattern/utility';
+@use 'themes/mytheme/variables/general';
+@use 'themes/mytheme/variables/message';
+
+.p-toast {
+  min-width: utility.get-rem(280);
+
+  .p-toast-message {
+    margin: message.$toastMargin;
+    box-shadow: message.$toastShadow;
+    border-radius: utility.get-rem(10);
+    color: colors.get-color('UiBlack');
+
+    .p-toast-message-content {
+      padding: utility.get-rem(12);
+      border-width: message.$toastBorderWidth;
+      display: flex;
+      align-items: center;
+      gap: utility.get-rem(10);
+
+      .p-toast-message-text {
+        margin: message.$toastMessageTextMargin;
+      }
+      .p-toast-message-icon {
+        font-size: message.$toastIconFontSize;
+      }
+
+      .p-icon:not(.p-toast-icon-close-icon) {
+        width: message.$toastIconFontSize;
+        height: message.$toastIconFontSize;
+      }
+
+      .p-toast-summary {
+        font-weight: message.$toastTitleFontWeight;
+      }
+
+      .p-toast-detail {
+        margin: message.$toastDetailMargin;
+      }
+    }
+
+    .p-toast-icon-close {
+      width: message.$toastIconFontSize;
+      height: message.$toastIconFontSize;
+      border-radius: general.$actionIconBorderRadius;
+      background: transparent;
+      transition: general.$actionIconTransition;
+      margin-left: auto;
+      color: colors.get-color('UiBlack');
+
+      &:focus-visible {
+        @include mixins.focused();
+      }
+    }
+
+    &.p-toast-message-info {
+      background: colors.get-color('InfoBlue95');
+    }
+
+    &.p-toast-message-success {
+      background: colors.get-color('SuccessGreen95');
+    }
+
+    &.p-toast-message-warn {
+      background: colors.get-color('AttentionYellow95');
+    }
+
+    &.p-toast-message-error {
+      background: colors.get-color('ErrorRed95');
+    }
+
+    &.p-toast-message-alert {
+      background: colors.get-color('AlertOrange95');
+    }
+  }
+}

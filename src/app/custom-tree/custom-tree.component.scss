@@ -1,0 +1,114 @@
+@use '../../styles/pattern/colors' as colors;
+
+.tree-container {
+  font-family: "Nunito Sans", "Segoe UI", Arial, sans-serif;
+  font-size: 15px;
+  color: #222;
+  background: #fff;
+}
+
+.tree-node {
+  margin: 0;
+}
+
+.node-content {
+  display: flex;
+  align-items: center;
+  padding: 6px 0 6px 0;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.15s;
+  min-height: 50px;
+}
+
+.node-content:hover {
+  background-color: #f3f2f2;
+}
+
+.expand-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px 6px;
+  margin-right: 4px;
+  font-size: 14px;
+  color: colors.get-color('SeaBlue');
+  border-radius: 2px;
+  min-width: 20px;
+  text-align: center;
+  transition: background-color 0.15s;
+}
+
+.expand-toggle:hover {
+  background-color: #f3f2f2;
+}
+
+.expand-spacer {
+  width: 28px;
+  height: 20px;
+  display: inline-block;
+}
+
+.node-checkbox {
+  margin-right: 10px;
+  width: 18px;
+  height: 18px;
+  accent-color: #003591;
+  border-radius: 4px;
+  border: 1.5px solid #cbcac8;
+  background: #fff;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+  appearance: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: none;
+}
+
+.node-checkbox:checked,
+.node-checkbox:indeterminate {
+  background-color: #003591;
+  border-color: #003591;
+  box-shadow: none;
+  &:hover {
+    border-color: #1976d2;
+    background: #1976d2;
+    color: #ffffff;
+  }
+}
+
+.node-checkbox:checked::after 
+.node-checkbox:indeterminate::after{
+  content: '';
+  display: block;
+  width: 8px;
+  height: 4px;
+  border-left: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  transform: rotate(-45deg);
+}
+
+.node-label {
+  cursor: pointer;
+  flex: 1;
+  user-select: none;
+  padding: 2px 4px;
+  border-radius: 2px;
+  font-size: 12px;
+  color: rgb(15, 32, 75);
+  font-weight: 400;
+  transition: background 0.15s;
+  text-wrap: auto;
+}
+
+.node-label:hover {
+  background-color: #f3f2f2;
+}
+
+.children {
+  margin-left: 0;
+}

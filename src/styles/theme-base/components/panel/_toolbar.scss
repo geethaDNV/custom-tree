@@ -1,0 +1,14 @@
+@use 'themes/mytheme/variables/general';
+@use 'themes/mytheme/variables/panel';
+
+.p-toolbar {
+  background: panel.$panelHeaderBg;
+  border: panel.$panelHeaderBorder;
+  padding: panel.$panelHeaderPadding;
+  border-radius: general.$borderRadius;
+  gap: general.$inlineSpacing;
+
+  .p-toolbar-separator {
+    margin: 0 general.$inlineSpacing;
+  }
+}

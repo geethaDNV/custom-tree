@@ -1,0 +1,16 @@
+@use 'sass:list';
+@use 'themes/mytheme/variables/form';
+
+.p-icon-field-left {
+  .p-input-icon:first-of-type {
+    left: list.nth(form.$inputPadding, 2);
+    color: form.$inputIconColor;
+  }
+}
+
+.p-icon-field-right {
+  .p-input-icon:last-of-type {
+    right: list.nth(form.$inputPadding, 2);
+    color: form.$inputIconColor;
+  }
+}

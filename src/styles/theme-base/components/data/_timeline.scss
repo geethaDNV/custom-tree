@@ -1,0 +1,37 @@
+@use 'themes/mytheme/variables/data';
+
+.p-timeline {
+  .p-timeline-event-marker {
+    border: data.$timelineEventMarkerBorder;
+    border-radius: data.$timelineEventMarkerBorderRadius;
+    width: data.$timelineEventMarkerWidth;
+    height: data.$timelineEventMarkerHeight;
+    background-color: data.$timelineEventMarkerBackground;
+  }
+
+  .p-timeline-event-connector {
+    background-color: data.$timelineEventColor;
+  }
+
+  &.p-timeline-vertical {
+    .p-timeline-event-opposite,
+    .p-timeline-event-content {
+      padding: data.$timelineVerticalEventContentPadding;
+    }
+
+    .p-timeline-event-connector {
+      width: data.$timelineEventConnectorSize;
+    }
+  }
+
+  &.p-timeline-horizontal {
+    .p-timeline-event-opposite,
+    .p-timeline-event-content {
+      padding: data.$timelineHorizontalEventContentPadding;
+    }
+
+    .p-timeline-event-connector {
+      height: data.$timelineEventConnectorSize;
+    }
+  }
+}

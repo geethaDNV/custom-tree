@@ -1,0 +1,351 @@
+@use 'sass:color';
+@use 'sass:list';
+
+@use 'pattern/colors';
+@use 'pattern/typography';
+
+@use 'themes/mytheme/variables/general';
+@use 'themes/mytheme/variables/form';
+@use 'themes/mytheme/variables/menu';
+@use 'themes/mytheme/variables/misc';
+
+@mixin icon-override($icon) {
+  &:before {
+    content: $icon;
+  }
+}
+
+@mixin focused() {
+  outline: general.$focusOutline;
+  outline-offset: general.$focusOutlineOffset;
+  box-shadow: general.$focusShadow;
+}
+
+@mixin focused-inset() {
+  outline: general.$focusOutline;
+  outline-offset: general.$focusOutlineOffset;
+  box-shadow: inset general.$focusShadow;
+}
+
+@mixin focused-input() {
+  outline: general.$focusOutline;
+  outline-offset: general.$inputFocusOutlineOffset;
+  box-shadow: general.$focusShadow;
+  border-color: form.$inputFocusBorderColor;
+}
+
+@mixin focused-listitem() {
+  outline: general.$focusOutline;
+  outline-offset: general.$focusOutlineOffset;
+  box-shadow: form.$inputListItemFocusShadow;
+}
+
+@mixin invalid-input() {
+  border-color: form.$inputErrorBorderColor;
+}
+
+@mixin menuitem-link {
+  padding: $menuitemPadding;
+  color: menu.$menuitemTextColor;
+  border-radius: $menuitemBorderRadius;
+  transition: general.$listItemTransition;
+  user-select: none;
+
+  .p-menuitem-text {
+    color: $menuitemTextColor;
+  }
+
+  .p-menuitem-icon {
+    color: $menuitemIconColor;
+    margin-right: general.$inlineSpacing;
+  }
+
+  .p-submenu-icon {
+    color: $menuitemIconColor;
+  }
+
+  &:not(.p-disabled):hover {
+    background: $menuitemHoverBg;
+
+    .p-menuitem-text {
+      color: $menuitemTextHoverColor;
+    }
+
+    .p-menuitem-icon {
+      color: $menuitemIconHoverColor;
+    }
+
+    .p-submenu-icon {
+      color: $menuitemIconHoverColor;
+    }
+  }
+
+  &:focus {
+    @include focused-listitem();
+  }
+}
+
+@mixin menuitem {
+  > .p-menuitem-content {
+    color: colors.get-color('SeaBlue');
+    transition: general.$listItemTransition;
+    border-radius: menu.$menuitemBorderRadius;
+
+    .p-menuitem-link {
+      @extend %#{typography.$button-s-pattern};
+      color: colors.get-color('SeaBlue');
+      padding: menu.$menuitemPadding;
+      user-select: none;
+
+      .p-menuitem-text {
+        color: colors.get-color('SeaBlue');
+      }
+
+      .p-menuitem-icon {
+        color: colors.get-color('SeaBlue');
+        margin-right: general.$inlineSpacing;
+      }
+
+      .p-submenu-icon {
+        color: colors.get-color('SeaBlue');
+      }
+    }
+  }
+
+  &.p-highlight {
+    > .p-menuitem-content {
+      color: menu.$menuitemTextActiveColor;
+      background: menu.$menuitemActiveBg;
+
+      .p-menuitem-link {
+        .p-menuitem-text {
+          color: menu.$menuitemTextActiveColor;
+        }
+
+        .p-menuitem-icon,
+        .p-submenu-icon {
+          color: menu.$menuitemIconActiveColor;
+        }
+      }
+    }
+
+    &.p-focus {
+      > .p-menuitem-content {
+        background: menu.$menuitemActiveFocusBg;
+      }
+    }
+  }
+
+  &:not(.p-highlight):not(.p-disabled) {
+    &.p-focus {
+      > .p-menuitem-content {
+        color: menu.$menuitemTextFocusColor;
+        background: menu.$menuitemFocusBg;
+
+        .p-menuitem-link {
+          .p-menuitem-text {
+            color: menu.$menuitemTextFocusColor;
+          }
+
+          .p-menuitem-icon,
+          .p-submenu-icon {
+            color: menu.$menuitemIconFocusColor;
+          }
+        }
+      }
+    }
+
+    > .p-menuitem-content {
+      &:hover {
+        color: menu.$menuitemTextHoverColor;
+        background: menu.$menuitemHoverBg;
+
+        .p-menuitem-link {
+          .p-menuitem-text {
+            color: menu.$menuitemTextHoverColor;
+          }
+
+          .p-menuitem-icon,
+          .p-submenu-icon {
+            color: menu.$menuitemIconHoverColor;
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin horizontal-rootmenuitem-link {
+  padding: menu.$horizontalMenuRootMenuitemPadding;
+  color: menu.$horizontalMenuRootMenuitemTextColor;
+  border-radius: menu.$horizontalMenuRootMenuitemBorderRadius;
+  transition: general.$listItemTransition;
+  user-select: none;
+
+  .p-menuitem-text {
+    color: menu.$horizontalMenuRootMenuitemTextColor;
+  }
+
+  .p-menuitem-icon {
+    color: menu.$horizontalMenuRootMenuitemIconColor;
+    margin-right: general.$inlineSpacing;
+  }
+
+  .p-submenu-icon {
+    color: menu.$horizontalMenuRootMenuitemIconColor;
+    margin-left: general.$inlineSpacing;
+  }
+
+  &:not(.p-disabled):hover {
+    background: menu.$horizontalMenuRootMenuitemHoverBg;
+
+    .p-menuitem-text {
+      color: menu.$horizontalMenuRootMenuitemTextHoverColor;
+    }
+
+    .p-menuitem-icon {
+      color: menu.$horizontalMenuRootMenuitemIconHoverColor;
+    }
+
+    .p-submenu-icon {
+      color: menu.$horizontalMenuRootMenuitemIconHoverColor;
+    }
+  }
+
+  &:focus {
+    @include focused-listitem();
+  }
+}
+
+@mixin horizontal-rootmenuitem {
+  > .p-menuitem-content {
+    color: menu.$horizontalMenuRootMenuitemTextColor;
+    transition: general.$listItemTransition;
+    border-radius: menu.$horizontalMenuRootMenuitemBorderRadius;
+
+    .p-menuitem-link {
+      padding: menu.$horizontalMenuRootMenuitemPadding;
+      user-select: none;
+
+      .p-menuitem-text {
+        color: menu.$horizontalMenuRootMenuitemTextColor;
+      }
+
+      .p-menuitem-icon {
+        color: menu.$horizontalMenuRootMenuitemIconColor;
+        margin-right: general.$inlineSpacing;
+      }
+
+      .p-submenu-icon {
+        color: menu.$horizontalMenuRootMenuitemIconColor;
+        margin-left: general.$inlineSpacing;
+      }
+    }
+  }
+
+  &:not(.p-highlight):not(.p-disabled) {
+    > .p-menuitem-content {
+      &:hover {
+        color: menu.$horizontalMenuRootMenuitemTextHoverColor;
+        background: menu.$horizontalMenuRootMenuitemHoverBg;
+
+        .p-menuitem-link {
+          .p-menuitem-text {
+            color: menu.$horizontalMenuRootMenuitemTextHoverColor;
+          }
+
+          .p-menuitem-icon,
+          .p-submenu-icon {
+            color: menu.$horizontalMenuRootMenuitemIconHoverColor;
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin placeholder {
+  ::-webkit-input-placeholder {
+    @content;
+  }
+  :-moz-placeholder {
+    @content;
+  }
+  ::-moz-placeholder {
+    @content;
+  }
+  :-ms-input-placeholder {
+    @content;
+  }
+}
+
+@mixin scaledPadding($val, $scale) {
+  padding: list.nth($val, 1) * $scale list.nth($val, 2) * $scale;
+}
+
+@mixin scaledFontSize($val, $scale) {
+  font-size: $val * $scale;
+}
+
+@mixin nested-submenu-indents($val, $index, $length) {
+  .p-submenu-list {
+    .p-menuitem {
+      .p-menuitem-content {
+        .p-menuitem-link {
+          padding-left: $val * ($index + 1);
+        }
+      }
+      @if $index < $length {
+        @include nested-submenu-indents($val, $index + 2, $length);
+      }
+    }
+  }
+}
+
+@mixin action-icon($enabled: true) {
+  width: general.$actionIconWidth;
+  height: general.$actionIconHeight;
+  color: general.$actionIconColor;
+  border: general.$actionIconBorder;
+  background: general.$actionIconBg;
+  border-radius: general.$actionIconBorderRadius;
+  transition: general.$actionIconTransition;
+
+  &:enabled:hover {
+    color: general.$actionIconHoverColor;
+    border-color: general.$actionIconHoverBorderColor;
+    background: general.$actionIconHoverBg;
+  }
+
+  &:focus-visible {
+    @include focused();
+  }
+}
+
+@function tint($color, $percentage) {
+  @return color.mix(#fff, $color, $percentage);
+}
+
+@function shade($color, $percentage) {
+  @return color.mix(#000, $color, $percentage);
+}
+
+@mixin focused-inset() {
+  outline: general.$focusOutline;
+  outline-offset: general.$focusOutlineOffset;
+  box-shadow: inset general.$focusShadow;
+}
+
+@mixin menuitem-badge {
+  background: misc.$badgeBg;
+  color: misc.$badgeTextColor;
+  font-size: misc.$badgeFontSize;
+  font-weight: misc.$badgeFontWeight;
+  min-width: misc.$badgeMinWidth;
+  height: misc.$badgeHeight;
+  line-height: misc.$badgeHeight;
+  border-radius: general.$borderRadius;
+  margin-left: general.$inlineSpacing;
+  padding-left: general.$inlineSpacing;
+  padding-right: general.$inlineSpacing;
+}

@@ -1,0 +1,83 @@
+@use '../../mixins';
+
+@use 'themes/mytheme/variables/form';
+@use 'themes/mytheme/variables/general';
+
+.p-radiobutton {
+  width: form.$radiobuttonWidth;
+  height: form.$radiobuttonHeight;
+
+  .p-radiobutton-box {
+    border: form.$radiobuttonBorder;
+    background: form.$inputBg;
+    width: form.$radiobuttonWidth;
+    height: form.$radiobuttonHeight;
+    color: general.$textColor;
+    border-radius: 50%;
+    transition: general.$formElementTransition;
+
+    &:not(.p-disabled):not(.p-highlight):hover {
+      border-color: form.$inputHoverBorderColor;
+    }
+
+    &:not(.p-disabled).p-focus {
+      @include mixins.focused-input();
+    }
+
+    .p-radiobutton-icon {
+      width: form.$radiobuttonIconSize;
+      height: form.$radiobuttonIconSize;
+      transition-duration: general.$transitionDuration;
+      background-color: form.$radiobuttonIconActiveColor;
+    }
+
+    &.p-highlight {
+      border-color: form.$radiobuttonActiveBorderColor;
+      background: form.$radiobuttonActiveBg;
+
+      &:not(.p-disabled):hover {
+        border-color: form.$radiobuttonActiveHoverBorderColor;
+        background: form.$radiobuttonActiveHoverBg;
+        color: form.$radiobuttonIconActiveHoverColor;
+      }
+    }
+  }
+}
+
+p-radiobutton.ng-dirty.ng-invalid > .p-radiobutton > .p-radiobutton-box {
+  @include mixins.invalid-input();
+}
+
+.p-input-filled {
+  .p-radiobutton {
+    .p-radiobutton-box {
+      background-color: form.$inputFilledBg;
+
+      &:not(.p-disabled):hover {
+        background-color: form.$inputFilledHoverBg;
+      }
+
+      &.p-highlight {
+        background: form.$radiobuttonActiveBg;
+
+        &:not(.p-disabled):hover {
+          background: form.$radiobuttonActiveHoverBg;
+        }
+      }
+    }
+  }
+}
+
+.p-radiobutton-label {
+  margin-left: general.$inlineSpacing;
+}
+
+@if (general.$highlightBg == form.$radiobuttonActiveBg) {
+  .p-highlight {
+    .p-radiobutton {
+      .p-radiobutton-box {
+        border-color: $radiobuttonIconActiveColor;
+      }
+    }
+  }
+}

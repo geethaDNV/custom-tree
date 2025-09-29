@@ -1,0 +1,51 @@
+@use 'themes/mytheme/variables/button';
+@use 'themes/mytheme/variables/misc';
+
+.p-badge {
+  background: misc.$badgeBg;
+  color: misc.$badgeTextColor;
+  font-size: misc.$badgeFontSize;
+  font-weight: misc.$badgeFontWeight;
+  min-width: misc.$badgeMinWidth;
+  height: misc.$badgeHeight;
+  line-height: misc.$badgeHeight;
+
+  &.p-badge-secondary {
+    background-color: button.$secondaryButtonBg;
+    color: button.$secondaryButtonTextColor;
+  }
+
+  &.p-badge-success {
+    background-color: button.$successButtonBg;
+    color: button.$successButtonTextColor;
+  }
+
+  &.p-badge-info {
+    background-color: button.$infoButtonBg;
+    color: button.$infoButtonTextColor;
+  }
+
+  &.p-badge-warning {
+    background-color: button.$warningButtonBg;
+    color: button.$warningButtonTextColor;
+  }
+
+  &.p-badge-danger {
+    background-color: button.$dangerButtonBg;
+    color: button.$dangerButtonTextColor;
+  }
+
+  &.p-badge-lg {
+    font-size: 1.5 * misc.$badgeFontSize;
+    min-width: 1.5 * misc.$badgeMinWidth;
+    height: 1.5 * misc.$badgeHeight;
+    line-height: 1.5 * misc.$badgeHeight;
+  }
+
+  &.p-badge-xl {
+    font-size: 2 * misc.$badgeFontSize;
+    min-width: 2 * misc.$badgeMinWidth;
+    height: 2 * misc.$badgeHeight;
+    line-height: 2 * misc.$badgeHeight;
+  }
+}

@@ -1,0 +1,287 @@
+@use '../../mixins';
+
+@use 'themes/mytheme/variables/data';
+@use 'themes/mytheme/variables/general';
+@use 'themes/mytheme/variables/panel';
+
+.p-treetable {
+  .p-paginator-top {
+    border-width: data.$tableTopPaginatorBorderWidth;
+    border-radius: 0;
+  }
+
+  .p-paginator-bottom {
+    border-width: data.$tableBottomPaginatorBorderWidth;
+    border-radius: 0;
+  }
+
+  .p-treetable-header {
+    background: data.$tableHeaderBg;
+    color: data.$tableHeaderTextColor;
+    border: data.$tableHeaderBorder;
+    border-width: data.$tableHeaderBorderWidth;
+    padding: data.$tableHeaderPadding;
+    font-weight: data.$tableHeaderFontWeight;
+  }
+
+  .p-treetable-footer {
+    background: data.$tableFooterBg;
+    color: data.$tableFooterTextColor;
+    border: data.$tableFooterBorder;
+    border-width: data.$tableFooterBorderWidth;
+    padding: data.$tableFooterPadding;
+    font-weight: data.$tableFooterFontWeight;
+  }
+
+  .p-treetable-thead > tr > th {
+    text-align: data.$tableCellContentAlignment;
+    padding: data.$tableHeaderCellPadding;
+    border: data.$tableHeaderCellBorder;
+    border-width: data.$tableHeaderCellBorderWidth;
+    font-weight: data.$tableHeaderCellFontWeight;
+    color: data.$tableHeaderCellTextColor;
+    background: data.$tableHeaderCellBg;
+    transition: general.$listItemTransition;
+  }
+
+  .p-treetable-tfoot > tr > td {
+    text-align: data.$tableCellContentAlignment;
+    padding: data.$tableFooterCellPadding;
+    border: data.$tableFooterCellBorder;
+    border-width: data.$tableFooterCellBorderWidth;
+    font-weight: data.$tableFooterCellFontWeight;
+    color: data.$tableFooterCellTextColor;
+    background: data.$tableFooterCellBg;
+  }
+
+  .p-sortable-column {
+    outline-color: general.$focusOutlineColor;
+
+    .p-sortable-column-icon {
+      color: data.$tableHeaderCellIconColor;
+      margin-left: general.$inlineSpacing;
+    }
+
+    .p-sortable-column-badge {
+      border-radius: 50%;
+      height: data.$tableSortableColumnBadgeSize;
+      min-width: data.$tableSortableColumnBadgeSize;
+      line-height: data.$tableSortableColumnBadgeSize;
+      color: general.$highlightTextColor;
+      background: general.$highlightBg;
+      margin-left: general.$inlineSpacing;
+    }
+
+    &:not(.p-highlight):hover {
+      background: data.$tableHeaderCellHoverBg;
+      color: data.$tableHeaderCellTextHoverColor;
+
+      .p-sortable-column-icon {
+        color: data.$tableHeaderCellIconHoverColor;
+      }
+    }
+
+    &.p-highlight {
+      background: data.$tableHeaderCellHighlightBg;
+      color: data.$tableHeaderCellHighlightTextColor;
+
+      .p-sortable-column-icon {
+        color: data.$tableHeaderCellHighlightTextColor;
+      }
+    }
+  }
+
+  .p-treetable-tbody {
+    > tr {
+      background: data.$tableBodyRowBg;
+      color: data.$tableBodyRowTextColor;
+      transition: general.$listItemTransition;
+
+      > td {
+        text-align: data.$tableCellContentAlignment;
+        border: data.$tableBodyCellBorder;
+        border-width: data.$tableBodyCellBorderWidth;
+        padding: data.$tableBodyCellPadding;
+
+        .p-treetable-toggler {
+          @include mixins.action-icon();
+          margin-right: general.$inlineSpacing;
+          &.p-icon {
+            width: data.$tableHeaderCellBg;
+            height: data.$tableHeaderCellBg;
+          }
+        }
+
+        p-treetablecheckbox .p-checkbox {
+          margin: 0;
+
+          .p-indeterminate {
+            .p-checkbox-icon {
+              color: general.$textColor;
+            }
+          }
+        }
+      }
+
+      &:focus-visible {
+        outline: 0.15rem solid general.$focusOutlineColor;
+        outline-offset: -0.15rem;
+      }
+
+      &.p-highlight {
+        background: general.$highlightBg;
+        color: general.$highlightTextColor;
+
+        .p-treetable-toggler {
+          color: general.$highlightTextColor;
+
+          &:hover {
+            color: general.$highlightTextColor;
+          }
+        }
+      }
+    }
+  }
+
+  &.p-treetable-hoverable-rows {
+    .p-treetable-tbody > tr:not(.p-highlight):hover {
+      background: data.$tableBodyRowHoverBg;
+      color: data.$tableBodyRowTextHoverColor;
+
+      .p-treetable-toggler {
+        color: data.$tableBodyRowTextHoverColor;
+      }
+    }
+  }
+
+  .p-column-resizer-helper {
+    background: data.$tableResizerHelperBg;
+  }
+
+  .p-treetable-scrollable-header,
+  .p-treetable-scrollable-footer {
+    background: panel.$panelHeaderBg;
+  }
+
+  .p-treetable-loading-icon {
+    font-size: data.$tableHeaderCellBg;
+
+    &.p-icon {
+      width: data.$tableHeaderCellBg;
+      height: data.$tableHeaderCellBg;
+    }
+  }
+
+  &.p-treetable-gridlines {
+    .p-datatable-header {
+      border-width: 1px 1px 0 1px;
+    }
+
+    .p-treetable-footer {
+      border-width: 0 1px 1px 1px;
+    }
+
+    .p-treetable-top {
+      border-width: 0 1px 0 1px;
+    }
+
+    .p-treetable-bottom {
+      border-width: 0 1px 1px 1px;
+    }
+
+    .p-treetable-thead {
+      > tr {
+        > th {
+          border-width: 1px;
+        }
+      }
+    }
+
+    .p-treetable-tbody {
+      > tr {
+        > td {
+          border-width: 1px;
+        }
+      }
+    }
+
+    .p-treetable-tfoot {
+      > tr {
+        > td {
+          border-width: 1px;
+        }
+      }
+    }
+  }
+
+  &.p-treetable-sm {
+    .p-treetable-header {
+      @include mixins.scaledPadding(data.$tableHeaderPadding, general.$scaleSM);
+    }
+
+    .p-treetable-thead > tr > th {
+      @include mixins.scaledPadding(
+        data.$tableHeaderCellPadding,
+        data.$tableScaleSM
+      );
+    }
+
+    .p-treetable-tbody > tr > td {
+      @include mixins.scaledPadding(
+        data.$tableBodyCellPadding,
+        data.$tableScaleSM
+      );
+    }
+
+    .p-treetable-tfoot > tr > td {
+      @include mixins.scaledPadding(
+        data.$tableFooterPadding,
+        data.$tableScaleSM
+      );
+    }
+
+    .p-treetable-footer {
+      @include mixins.scaledPadding(
+        data.$tableFooterPadding,
+        data.$tableScaleSM
+      );
+    }
+  }
+
+  &.p-treetable-lg {
+    .p-treetable-header {
+      @include mixins.scaledPadding(
+        data.$tableHeaderPadding,
+        data.$tableScaleLG
+      );
+    }
+
+    .p-treetable-thead > tr > th {
+      @include mixins.scaledPadding(
+        data.$tableHeaderCellPadding,
+        data.$tableScaleLG
+      );
+    }
+
+    .p-treetable-tbody > tr > td {
+      @include mixins.scaledPadding(
+        data.$tableBodyCellPadding,
+        data.$tableScaleLG
+      );
+    }
+
+    .p-treetable-tfoot > tr > td {
+      @include mixins.scaledPadding(
+        data.$tableFooterPadding,
+        data.$tableScaleLG
+      );
+    }
+
+    .p-treetable-footer {
+      @include mixins.scaledPadding(
+        data.$tableFooterPadding,
+        data.$tableScaleLG
+      );
+    }
+  }
+}

@@ -1,0 +1,135 @@
+@use '../../mixins';
+
+@use 'sass:list';
+@use 'sass:color';
+@use 'themes/mytheme/variables/data';
+@use 'themes/mytheme/variables/form';
+@use 'themes/mytheme/variables/general';
+@use 'themes/mytheme/variables/panel';
+
+.p-tree {
+  border: panel.$panelContentBorder;
+  background: panel.$panelContentBg;
+  color: panel.$panelContentTextColor;
+  padding: 0;
+  border-radius: general.$borderRadius;
+
+  .p-tree-container {
+    .p-treenode {
+      padding: 0;
+      outline: 0 none;
+
+      &:focus > .p-treenode-content {
+        @include mixins.focused-listitem();
+      }
+
+      .p-treenode-content {
+        border-radius: general.$borderRadius;
+        transition: general.$listItemTransition;
+        padding: data.$treeNodeContentPadding;
+
+        .p-tree-toggler {
+          margin: 0;
+          @include mixins.action-icon();
+        }
+
+        .p-treenode-icon {
+          margin-right: general.$inlineSpacing;
+          color: data.$treeNodeIconColor;
+        }
+
+        .p-checkbox {
+          margin: 0;
+        }
+
+        .p-checkbox-box.p-indeterminate {
+          background: form.$checkboxActiveBg;
+        }
+
+        &.p-treenode-selectable:not(.p-highlight):hover {
+          background: form.$inputListItemHoverBg;
+          color: form.$inputListItemTextHoverColor;
+        }
+
+        &.p-treenode-dragover {
+          background: form.$inputListItemHoverBg;
+          color: form.$inputListItemTextHoverColor;
+        }
+      }
+    }
+  }
+
+  .p-tree-filter-container {
+    margin-bottom: general.$inlineSpacing;
+
+    .p-tree-filter {
+      width: 100%;
+      padding-right: list.nth(form.$inputPadding, 2) +
+        general.$primeIconFontSize;
+    }
+
+    .p-tree-filter-icon {
+      right: list.nth(form.$inputPadding, 2);
+      color: form.$inputIconColor;
+    }
+  }
+
+  .p-treenode-children {
+    padding: data.$treeNodeChildrenPadding;
+  }
+
+  .p-tree-loading-icon {
+    font-size: data.$tableHeaderCellBg;
+
+    &.p-icon {
+      width: data.$tableHeaderCellBg;
+      height: data.$tableHeaderCellBg;
+    }
+  }
+
+  .p-treenode-droppoint {
+    &.p-treenode-droppoint-active {
+      background-color: color.scale(general.$highlightBg, $lightness: -20%);
+    }
+  }
+
+  &.p-tree-horizontal {
+    .p-treenode {
+      .p-treenode-content {
+        border-radius: general.$borderRadius;
+        border: panel.$panelContentBorder;
+        background-color: panel.$panelContentBg;
+        color: panel.$panelContentTextColor;
+        padding: data.$treeNodeContentPadding;
+        transition: general.$listItemTransition;
+
+        .p-tree-toggler {
+          margin: 0;
+        }
+
+        .p-treenode-icon {
+          color: data.$treeNodeIconColor;
+          margin-right: general.$inlineSpacing;
+        }
+
+        .p-checkbox {
+          margin: 0;
+        }
+
+        .p-treenode-label:not(.p-highlight):hover {
+          background-color: inherit;
+          color: inherit;
+        }
+
+        &.p-treenode-selectable:not(.p-highlight):hover {
+          background: form.$inputListItemHoverBg;
+          color: form.$inputListItemTextHoverColor;
+        }
+
+        &:focus {
+          @include mixins.focused();
+        }
+      }
+    }
+  }
+}

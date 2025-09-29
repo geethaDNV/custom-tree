@@ -1,0 +1,87 @@
+@use '../../mixins' as themeMixin;
+
+@use 'pattern/colors';
+@use 'pattern/typography';
+@use 'pattern/mixins';
+@use 'pattern/utility';
+@use 'variables';
+@use 'themes/mytheme/variables/general';
+@use 'themes/mytheme/variables/overlay';
+@use 'themes/mytheme/variables/panel';
+
+.p-dialog {
+  border-radius: general.$borderRadius;
+  box-shadow: overlay.$overlayContainerShadow;
+  border: overlay.$overlayContentBorder;
+  max-width: utility.get-rem(600);
+
+  .p-dialog-header {
+    border-bottom: 1px solid colors.get-color('SkyBlue90');
+    background: overlay.$dialogHeaderBg;
+    color: overlay.$dialogHeaderTextColor;
+    border-top-right-radius: general.$borderRadius;
+    border-top-left-radius: general.$borderRadius;
+    @include mixins.gutter-for(top, right, bottom, left);
+    @include mixins.gutter-for(0.75, top, bottom);
+
+    .p-dialog-title {
+      @extend %#{typography.$heading-l-pattern};
+      color: variables.$primary-dnv-dark-blue;
+    }
+
+    .p-dialog-header-icon {
+      @include themeMixin.action-icon();
+      margin-right: general.$inlineSpacing;
+      color: variables.$dusk-blue;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  .p-dialog-content {
+    background: overlay.$overlayContentBg;
+    color: variables.$black;
+    @include mixins.gutter-for(top, right, bottom, left);
+    @include mixins.gutter-for(0.75, top, bottom);
+
+    &:last-of-type {
+      border-bottom-right-radius: general.$borderRadius;
+      border-bottom-left-radius: general.$borderRadius;
+    }
+  }
+
+  .p-dialog-footer {
+    border-top: 1px solid colors.get-color('SkyBlue90');
+    background: overlay.$overlayContentBg;
+    color: panel.$panelFooterTextColor;
+    text-align: right;
+    border-bottom-right-radius: general.$borderRadius;
+    border-bottom-left-radius: general.$borderRadius;
+    display: flex;
+    justify-content: space-between;
+    font-size: utility.get-rem(16);
+    @include mixins.gutter-for(top, right, bottom, left);
+    @include mixins.gutter-for(0.75, top, bottom);
+
+    button {
+      width: auto;
+    }
+  }
+
+  &.p-confirm-dialog {
+    .p-confirm-dialog-icon {
+      font-size: general.$primeIconFontSize * 2;
+
+      &.p-icon {
+        width: general.$primeIconFontSize * 2;
+        height: general.$primeIconFontSize * 2;
+      }
+    }
+
+    .p-confirm-dialog-message {
+      margin-left: general.$inlineSpacing * 2;
+    }
+  }
+}

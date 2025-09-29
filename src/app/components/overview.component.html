@@ -1,0 +1,32 @@
+<div *ngIf="siteList$ | async as siteList; else loading">
+  <h2>Site Master List</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Site Name</th>
+        <th>Company</th>
+        <th>City</th>
+        <th>Country</th>
+        <th>Address</th>
+        <th>State</th>
+        <th>Zip</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let site of siteList">
+        <td>{{ site.id }}</td>
+        <td>{{ site.siteName }}</td>
+        <td>{{ site.companyName }}</td>
+        <td>{{ site.city }}</td>
+        <td>{{ site.countryName }}</td>
+        <td>{{ site.formattedAddress }}</td>
+        <td>{{ site.siteState }}</td>
+        <td>{{ site.siteZip }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<ng-template #loading>
+  <p>Loading site data...</p>
+</ng-template>

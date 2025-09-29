@@ -1,0 +1,69 @@
+@use 'sass:string';
+
+@use 'colors';
+@use 'mixins';
+@use 'utility';
+
+/**
+ * Page Base Styles
+ */
+$page-base-pattern: string.unique-id();
+$page-base-head-pattern: string.unique-id();
+$page-base-body-pattern: string.unique-id();
+$page-base-body-subhead-pattern: string.unique-id();
+$page-base-body-section-grey-pattern: string.unique-id();
+$page-base-body-section-filters-pattern: string.unique-id();
+
+%#{$page-base-pattern} {
+  height: 100%;
+  grid-area: base;
+  display: grid;
+  grid-template-rows: minmax(75px, auto) minmax(max-content, 1fr);
+  grid-template-areas:
+    'head'
+    'body';
+
+  @include mixins.respond-to(phone) {
+    grid-template-rows: minmax(60px, auto) minmax(max-content, 1fr);
+  }
+}
+
+%#{$page-base-head-pattern} {
+  grid-area: head;
+  display: flex;
+  align-items: center;
+  background-color: colors.get-color('SkyBlue90');
+  @include mixins.gutter-for(right, left);
+  @include mixins.gutter-for(0.375, top, bottom);
+}
+
+%#{$page-base-body-pattern} {
+  height: 100%;
+  grid-area: body;
+  overflow: auto;
+}
+
+%#{$page-base-body-subhead-pattern} {
+  display: grid;
+  gap: utility.get-rem(var(--dnv-gutter-base-unitless));
+  background-color: colors.get-color('SkyBlue95');
+  @include mixins.gutter-for(right, left);
+  @include mixins.gutter-for(0.625, top, bottom);
+
+  @include mixins.only-for(desktop) {
+    @include mixins.gutter-for(2, right, left);
+  }
+}
+
+%#{$page-base-body-section-grey-pattern} {
+  @include mixins.gutter-for(right, left);
+  @include mixins.gutter-for(0.75, top, bottom);
+}
+
+%#{$page-base-body-section-filters-pattern} {
+  display: grid;
+  gap: utility.get-rem(calc(1.5 * var(--dnv-gutter-base-unitless)));
+  background-color: colors.get-color('SkyBlue95');
+  @include mixins.gutter-for(right, left);
+  @include mixins.gutter-for(0.5, top, bottom);
+}

@@ -1,0 +1,16 @@
+@use '../../mixins';
+
+@use 'themes/mytheme/variables/general';
+@use 'themes/mytheme/variables/panel';
+
+.p-scrollpanel {
+  .p-scrollpanel-bar {
+    background: panel.$scrollPanelTrackBg;
+    border: panel.$scrollPanelTrackBorder;
+    transition: general.$formElementTransition;
+
+    &:focus-visible {
+      @include mixins.focused();
+    }
+  }
+}

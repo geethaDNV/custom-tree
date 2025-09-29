@@ -1,0 +1,48 @@
+@use '../../mixins';
+
+@use 'sass:math';
+@use 'sass:list';
+@use 'themes/mytheme/variables/form';
+@use 'themes/mytheme/variables/general';
+@use 'themes/mytheme/variables/misc';
+
+.p-chip {
+  background-color: misc.$chipBg;
+  color: misc.$chipTextColor;
+  border-radius: misc.$chipBorderRadius;
+  padding: 0 list.nth(form.$inputPadding, 2);
+
+  .p-chip-text {
+    line-height: 1.5;
+    margin-top: math.div(list.nth(form.$inputPadding, 1), 2);
+    margin-bottom: math.div(list.nth(form.$inputPadding, 1), 2);
+  }
+
+  .p-chip-icon {
+    margin-right: general.$inlineSpacing;
+  }
+
+  .pi-chip-remove-icon {
+    margin-left: general.$inlineSpacing;
+  }
+
+  img {
+    width: 1.5 + list.nth(form.$inputPadding, 1);
+    height: 1.5 + list.nth(form.$inputPadding, 1);
+    margin-left: -1 * list.nth(form.$inputPadding, 2);
+    margin-right: general.$inlineSpacing;
+  }
+
+  .pi-chip-remove-icon {
+    border-radius: general.$borderRadius;
+    transition: general.$actionIconTransition;
+
+    &:focus-visible {
+      @include mixins.focused();
+    }
+
+    &:focus {
+      outline: 0 none;
+    }
+  }
+}

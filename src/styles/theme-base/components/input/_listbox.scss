@@ -1,0 +1,140 @@
+@use '../../mixins';
+
+@use 'sass:list';
+@use 'pattern/utility';
+@use 'variables';
+@use 'themes/mytheme/variables/form';
+@use 'themes/mytheme/variables/general';
+@use 'themes/mytheme/variables/menu';
+
+.p-listbox {
+  background: form.$inputListBg;
+  color: variables.$basic-tones-dnv-medium-dark;
+  border: form.$inputListBorder;
+  border-radius: utility.get-rem(10);
+  transition: general.$formElementTransition;
+
+  .p-listbox-header {
+    padding: utility.get-rem(14) utility.get-rem(17.5) utility.get-rem(10.5)
+      utility.get-rem(14);
+    color: form.$inputListHeaderTextColor;
+    background: variables.$basic-tones-dnv-ultra-light;
+    margin: form.$inputListHeaderMargin;
+    border-top-right-radius: general.$borderRadius;
+    border-top-left-radius: general.$borderRadius;
+    flex-direction: column;
+    align-items: start;
+    gap: utility.get-rem(9);
+    position: relative;
+    border-bottom: 1px solid variables.$basic-tones-dnv-medium-light;
+
+    .p-listbox-filter {
+      padding-right: list.nth(form.$inputPadding, 2) +
+        general.$primeIconFontSize;
+    }
+
+    .p-listbox-filter-icon {
+      right: list.nth(form.$inputPadding, 2);
+      color: form.$inputIconColor;
+    }
+
+    .p-checkbox {
+      margin: 0;
+    }
+  }
+
+  &.filter-header {
+    .p-listbox-header {
+      &:nth-of-type(1) {
+        border-bottom: unset;
+      }
+
+      &:nth-of-type(2) {
+        padding-top: 0;
+      }
+    }
+  }
+
+  .p-listbox-list {
+    padding: form.$inputListPadding;
+    outline: 0 none;
+
+    .p-listbox-item {
+      gap: utility.get-rem(8);
+      margin: form.$inputListItemMargin;
+      padding: form.$inputListItemPadding;
+      border: form.$inputListItemBorder;
+      color: form.$inputListItemTextColor;
+      transition: general.$listItemTransition;
+      border-radius: form.$inputListItemBorderRadius;
+      height: auto !important;
+      word-break: break-all;
+
+      &.p-highlight {
+        color: unset;
+        background: unset;
+        &:hover {
+          background: variables.$primary-dnv-sky-light-blue;
+        }
+      }
+
+      .p-checkbox {
+        margin: 0;
+      }
+
+      .p-disabled {
+        opacity: 0.6;
+      }
+    }
+
+    .p-listbox-item-group {
+      margin: menu.$submenuHeaderMargin;
+      padding: menu.$submenuHeaderPadding;
+      color: menu.$submenuHeaderTextColor;
+      background: menu.$submenuHeaderBg;
+      font-weight: menu.$submenuHeaderFontWeight;
+    }
+
+    .p-listbox-empty-message {
+      padding: form.$inputListItemPadding;
+      color: form.$inputListItemTextColor;
+      background: form.$inputListItemBg;
+    }
+  }
+
+  &:not(.p-disabled) {
+    .p-listbox-item {
+      &.p-highlight {
+        &.p-focus {
+          background: general.$highlightFocusBg;
+        }
+      }
+
+      &:not(.p-highlight):not(.p-disabled) {
+        &.p-focus {
+          color: form.$inputListItemTextFocusColor;
+          background: form.$inputListItemFocusBg;
+        }
+
+        &:hover {
+          color: variables.$basic-tones-dnv-medium-dark;
+          background: variables.$basic-tones-dnv-light;
+        }
+      }
+    }
+  }
+
+  &.p-focus {
+    @include mixins.focused-input();
+  }
+
+  .p-checkbox-box {
+    &.p-highlight {
+      background-color: variables.$primary-dnv-medium-blue;
+    }
+  }
+}
+
+p-listbox.ng-dirty.ng-invalid > .p-listbox {
+  @include mixins.invalid-input();
+}

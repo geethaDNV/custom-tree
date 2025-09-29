@@ -1,0 +1,16 @@
+@use 'themes/mytheme/variables/general';
+@use 'themes/mytheme/variables/misc';
+
+.p-skeleton {
+  background-color: misc.$skeletonBg;
+  border-radius: general.$borderRadius;
+
+  &:after {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0),
+      misc.$skeletonAnimationBg,
+      rgba(255, 255, 255, 0)
+    );
+  }
+}

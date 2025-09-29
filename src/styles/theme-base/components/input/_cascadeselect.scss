@@ -1,0 +1,145 @@
+@use '../../mixins';
+
+@use 'sass:math';
+@use 'sass:list';
+@use 'themes/mytheme/variables/form';
+@use 'themes/mytheme/variables/general';
+@use 'themes/mytheme/variables/menu';
+
+.p-cascadeselect {
+  background: form.$inputBg;
+  border: form.$inputBorder;
+  transition: general.$formElementTransition;
+  border-radius: general.$borderRadius;
+
+  &:not(.p-disabled):hover {
+    border-color: form.$inputHoverBorderColor;
+  }
+
+  &:not(.p-disabled).p-focus {
+    @include mixins.focused-input();
+  }
+
+  .p-cascadeselect-label {
+    background: transparent;
+    border: 0 none;
+    padding: form.$inputPadding;
+
+    &.p-placeholder {
+      color: form.$inputPlaceholderTextColor;
+    }
+
+    &:enabled:focus {
+      outline: 0 none;
+      box-shadow: none;
+    }
+  }
+
+  .p-cascadeselect-trigger {
+    background: transparent;
+    color: form.$inputIconColor;
+    width: form.$inputGroupAddOnMinWidth;
+    border-top-right-radius: general.$borderRadius;
+    border-bottom-right-radius: general.$borderRadius;
+  }
+
+  &.p-invalid.p-component {
+    @include mixins.invalid-input();
+  }
+}
+
+.p-cascadeselect-panel {
+  background: form.$inputOverlayBg;
+  color: form.$inputListTextColor;
+  border: form.$inputOverlayBorder;
+  border-radius: general.$borderRadius;
+  box-shadow: form.$inputOverlayShadow;
+
+  .p-cascadeselect-items {
+    padding: form.$inputListPadding;
+
+    .p-cascadeselect-item {
+      margin: form.$inputListItemMargin;
+      border: form.$inputListItemBorder;
+      color: form.$inputListItemTextColor;
+      background: form.$inputListItemBg;
+      transition: general.$listItemTransition;
+      border-radius: form.$inputListItemBorderRadius;
+
+      &.p-highlight {
+        color: general.$highlightTextColor;
+        background: general.$highlightBg;
+
+        &.p-focus {
+          background: general.$highlightFocusBg;
+        }
+      }
+
+      &:not(.p-highlight):not(.p-disabled) {
+        &.p-focus {
+          color: form.$inputListItemTextFocusColor;
+          background: form.$inputListItemFocusBg;
+        }
+
+        &:hover {
+          color: form.$inputListItemTextHoverColor;
+          background: form.$inputListItemHoverBg;
+        }
+      }
+
+      .p-cascadeselect-item-content {
+        padding: form.$inputListItemPadding;
+      }
+
+      .p-cascadeselect-group-icon {
+        font-size: menu.$menuitemSubmenuIconFontSize;
+      }
+    }
+  }
+}
+
+.p-input-filled {
+  .p-cascadeselect {
+    background: form.$inputFilledBg;
+
+    &:not(.p-disabled):hover {
+      background-color: form.$inputFilledHoverBg;
+    }
+
+    &:not(.p-disabled).p-focus {
+      background-color: form.$inputFilledFocusBg;
+    }
+  }
+}
+
+p-cascadeselect.ng-dirty.ng-invalid > .p-cascadeselect {
+  @include mixins.invalid-input();
+}
+
+p-cascadeselect.p-cascadeselect-clearable {
+  .p-cascadeselect-label {
+    padding-right: list.nth(form.$inputPadding, 2);
+  }
+
+  .p-cascadeselect-clear-icon {
+    color: form.$inputIconColor;
+    right: form.$inputGroupAddOnMinWidth;
+  }
+}
+
+.p-overlay-modal {
+  .p-cascadeselect-sublist {
+    .p-cascadeselect-panel {
+      box-shadow: none;
+      border-radius: 0;
+      padding: math.div(general.$inlineSpacing, 2) 0
+        math.div(general.$inlineSpacing, 2) general.$inlineSpacing;
+    }
+  }
+
+  .p-cascadeselect-item-active
+    > .p-cascadeselect-item-content
+    .p-cascadeselect-group-icon {
+    transform: rotate(90deg);
+  }
+}

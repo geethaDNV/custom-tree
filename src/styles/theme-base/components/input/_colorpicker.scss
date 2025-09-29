@@ -1,0 +1,21 @@
+@use 'themes/mytheme/variables/form';
+
+.p-colorpicker-preview,
+.p-fluid .p-colorpicker-preview.p-inputtext {
+  width: form.$colorPickerPreviewWidth;
+  height: form.$colorPickerPreviewHeight;
+}
+
+.p-colorpicker-panel {
+  background: form.$colorPickerBg;
+  border: form.$colorPickerBorder;
+
+  .p-colorpicker-color-handle,
+  .p-colorpicker-hue-handle {
+    border-color: form.$colorPickerHandleColor;
+  }
+}
+
+.p-colorpicker-overlay-panel {
+  box-shadow: form.$inputOverlayShadow;
+}

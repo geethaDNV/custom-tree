@@ -1,0 +1,88 @@
+@use 'sass:math';
+@use 'sass:list';
+@use 'sass:color';
+@use 'themes/mytheme/variables/button';
+@use 'themes/mytheme/variables/general';
+@use 'themes/mytheme/variables/overlay';
+@use 'themes/mytheme/variables/panel';
+
+.p-overlaypanel {
+  background: overlay.$overlayContentBg;
+  color: panel.$panelContentTextColor;
+  border: overlay.$overlayContentBorder;
+  border-radius: general.$borderRadius;
+  box-shadow: overlay.$overlayContainerShadow;
+
+  .p-overlaypanel-content {
+    padding: panel.$panelContentPadding;
+  }
+
+  .p-overlaypanel-close {
+    background: button.$buttonBg;
+    color: button.$buttonTextColor;
+    width: general.$actionIconWidth;
+    height: general.$actionIconHeight;
+    transition: general.$actionIconTransition;
+    border-radius: general.$actionIconBorderRadius;
+    position: absolute;
+    top: math.div(-1 * general.$actionIconWidth, 2);
+    right: math.div(-1 * general.$actionIconWidth, 2);
+
+    &:enabled:hover {
+      background: button.$buttonHoverBg;
+      color: button.$buttonTextHoverColor;
+    }
+  }
+
+  &:after {
+    border: solid transparent;
+    border-color: rgba(overlay.$overlayContentBg, 0);
+    border-bottom-color: overlay.$overlayContentBg;
+  }
+
+  &:before {
+    border: solid transparent;
+
+    @if (list.nth(overlay.$overlayContentBorder, 2) == 'none') {
+      border-color: rgba(overlay.$overlayContentBg, 0);
+      border-bottom-color: color.scale(
+        overlay.$overlayContentBg,
+        $lightness: -5%
+      );
+    } @else {
+      border-color: rgba(list.nth(overlay.$overlayContentBorder, 3), 0);
+      border-bottom-color: color.scale(
+        list.nth(overlay.$overlayContentBorder, 3),
+        $lightness: -5%
+      );
+    }
+  }
+
+  &.p-overlaypanel-flipped {
+    &:after {
+      border-top-color: overlay.$overlayContentBg;
+    }
+
+    &:before {
+      @if (list.nth(overlay.$overlayContentBorder, 2) == 'none') {
+        border-top-color: overlay.$overlayContentBg;
+      } @else {
+        border-top-color: list.nth(overlay.$overlayContentBorder, 3);
+      }
+    }
+  }
+}
+
+.is-caret-hidden {
+  box-shadow: none;
+  background-color: transparent;
+
+  &::after,
+  &::before {
+    display: none;
+  }
+
+  .p-overlaypanel-content {
+    padding: 0;
+  }
+}

@@ -1,0 +1,398 @@
+@use '../../mixins';
+
+@use 'pattern/utility';
+@use 'pattern/mixture';
+@use 'variables';
+@use 'themes/mytheme/variables/data';
+@use 'themes/mytheme/variables/form';
+@use 'themes/mytheme/variables/general';
+@use 'themes/mytheme/variables/panel';
+
+.p-datatable {
+  .p-paginator-top {
+    border-width: data.$tableTopPaginatorBorderWidth;
+    border-radius: 0;
+  }
+
+  .p-paginator-bottom {
+    border-width: data.$tableBottomPaginatorBorderWidth;
+    border-radius: 0;
+  }
+
+  .p-datatable-header {
+    background: data.$tableHeaderBg;
+    color: data.$tableHeaderTextColor;
+    border: none;
+    border-width: data.$tableHeaderBorderWidth;
+    padding-bottom: utility.get-rem(20);
+    font-weight: data.$tableHeaderFontWeight;
+  }
+
+  .p-datatable-footer {
+    background: data.$tableFooterBg;
+    color: data.$tableFooterTextColor;
+    border: data.$tableFooterBorder;
+    border-width: data.$tableFooterBorderWidth;
+    padding: data.$tableFooterPadding;
+    font-weight: data.$tableFooterFontWeight;
+  }
+
+  .p-datatable-thead > tr > th {
+    text-align: data.$tableCellContentAlignment;
+    padding: data.$tableHeaderCellPadding;
+    font-weight: data.$tableHeaderCellFontWeight;
+    color: data.$tableHeaderCellTextColor;
+    background: data.$tableHeaderCellBg;
+    transition: general.$listItemTransition;
+  }
+
+  .p-datatable-tfoot > tr > td {
+    text-align: data.$tableCellContentAlignment;
+    padding: data.$tableFooterCellPadding;
+    border: data.$tableFooterCellBorder;
+    border-width: data.$tableFooterCellBorderWidth;
+    font-weight: data.$tableFooterCellFontWeight;
+    color: data.$tableFooterCellTextColor;
+    background: data.$tableFooterCellBg;
+  }
+
+  .p-sortable-column {
+    .p-sortable-column-icon {
+      color: data.$tableHeaderCellIconColor;
+      margin-left: general.$inlineSpacing;
+    }
+
+    .p-sortable-column-badge {
+      border-radius: 50%;
+      height: data.$tableSortableColumnBadgeSize;
+      min-width: data.$tableSortableColumnBadgeSize;
+      line-height: data.$tableSortableColumnBadgeSize;
+      color: general.$highlightTextColor;
+      background: general.$highlightBg;
+      margin-left: general.$inlineSpacing;
+    }
+
+    &:not(.p-highlight):hover {
+      background: data.$tableHeaderCellHoverBg;
+      color: data.$tableHeaderCellTextHoverColor;
+
+      .p-sortable-column-icon {
+        color: data.$tableHeaderCellIconHoverColor;
+      }
+    }
+
+    &.p-highlight {
+      background: data.$tableHeaderCellHighlightBg;
+      color: data.$tableHeaderCellHighlightTextColor;
+
+      .p-sortable-column-icon {
+        color: variables.$primary-dnv-medium-blue;
+      }
+
+      &:hover {
+        background: data.$tableHeaderCellHighlightHoverBg;
+        color: data.$tableHeaderCellHighlightTextColor;
+
+        .p-sortable-column-icon {
+          color: variables.$primary-dnv-medium-blue;
+        }
+      }
+    }
+
+    &:focus-visible {
+      box-shadow: form.$inputListItemFocusShadow;
+      outline: 0 none;
+    }
+  }
+
+  .p-datatable-tbody {
+    > tr {
+      background: data.$tableBodyRowBg;
+      color: data.$tableBodyRowTextColor;
+      transition: general.$listItemTransition;
+
+      > td {
+        text-align: data.$tableCellContentAlignment;
+        padding: data.$tableBodyCellPadding;
+
+        .p-row-toggler,
+        .p-row-editor-init,
+        .p-row-editor-save,
+        .p-row-editor-cancel {
+          @include mixins.action-icon();
+        }
+
+        .p-row-editor-save {
+          margin-right: general.$inlineSpacing;
+        }
+      }
+
+      &:focus-visible {
+        outline: 0.15rem solid general.$focusOutlineColor;
+        outline-offset: -0.15rem;
+      }
+
+      &.p-highlight {
+        background: general.$highlightBg;
+        color: general.$highlightTextColor;
+      }
+
+      &.p-datatable-dragpoint-top > td {
+        box-shadow: inset 0 2px 0 0 general.$highlightBg;
+      }
+
+      &.p-datatable-dragpoint-bottom > td {
+        box-shadow: inset 0 -2px 0 0 general.$highlightBg;
+      }
+    }
+  }
+
+  &.p-datatable-hoverable-rows {
+    .p-datatable-tbody > tr:not(.p-highlight):hover {
+      background: data.$tableBodyRowHoverBg;
+      color: data.$tableBodyRowTextHoverColor;
+    }
+    tr:nth-child(even) {
+      background: variables.$table-body-row-even-bg;
+    }
+    .p-datatable-tbody > tr.selected-row {
+      background: linear-gradient(
+          0deg,
+          variables.$selected-row-bg 0%,
+          variables.$selected-row-bg 100%
+        ),
+        variables.$table-body-row-even-bg;
+    }
+  }
+
+  .p-column-resizer-helper {
+    background: data.$tableResizerHelperBg;
+  }
+
+  .p-datatable-scrollable-header,
+  .p-datatable-scrollable-footer {
+    background: panel.$panelHeaderBg;
+  }
+
+  &.p-datatable-scrollable > .p-datatable-wrapper > .p-datatable-table,
+  &.p-datatable-scrollable
+    > .p-datatable-wrapper
+    > .p-scroller-viewport
+    > .p-scroller
+    > .p-datatable-table {
+    > .p-datatable-thead,
+    > .p-datatable-tfoot {
+      background-color: data.$tableHeaderCellBg;
+    }
+  }
+
+  &.p-datatable-scrollable > .p-datatable-wrapper {
+    @extend %#{mixture.$shadow-default-pattern};
+    border-radius: 10px;
+  }
+
+  .p-datatable-wrapper {
+    @extend %#{mixture.$shadow-default-pattern};
+  }
+
+  .p-datatable-loading-icon {
+    font-size: data.$tableHeaderCellBg;
+  }
+
+  &.p-datatable-gridlines {
+    .p-datatable-header {
+      border-width: 1px 1px 0 1px;
+    }
+
+    .p-datatable-footer {
+      border-width: 0 1px 1px 1px;
+    }
+
+    .p-paginator-top {
+      border-width: 0 1px 0 1px;
+    }
+
+    .p-paginator-bottom {
+      border-width: 0 1px 1px 1px;
+    }
+
+    .p-datatable-thead {
+      > tr {
+        > th {
+          border-width: 1px 0 1px 1px;
+
+          &:last-child {
+            border-width: 1px;
+          }
+        }
+      }
+    }
+
+    .p-datatable-tbody {
+      > tr {
+        > td {
+          border-width: 1px 0 0 1px;
+
+          &:last-child {
+            border-width: 1px 1px 0 1px;
+          }
+        }
+
+        &:last-child {
+          > td {
+            border-width: 1px 0 1px 1px;
+
+            &:last-child {
+              border-width: 1px;
+            }
+          }
+        }
+      }
+    }
+
+    .p-datatable-tfoot {
+      > tr {
+        > td {
+          border-width: 1px 0 1px 1px;
+
+          &:last-child {
+            border-width: 1px 1px 1px 1px;
+          }
+        }
+      }
+    }
+
+    .p-datatable-thead + .p-datatable-tfoot {
+      > tr {
+        > td {
+          border-width: 0 0 1px 1px;
+
+          &:last-child {
+            border-width: 0 1px 1px 1px;
+          }
+        }
+      }
+    }
+
+    &:has(.p-datatable-thead):has(.p-datatable-tbody) .p-datatable-tbody {
+      > tr {
+        > td {
+          border-width: 0 0 1px 1px;
+
+          &:last-child {
+            border-width: 0 1px 1px 1px;
+          }
+        }
+      }
+    }
+
+    &:has(.p-datatable-tbody):has(.p-datatable-tfoot) .p-datatable-tbody {
+      > tr {
+        &:last-child {
+          > td {
+            border-width: 0 0 0 1px;
+
+            &:last-child {
+              border-width: 0 1px 0 1px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.p-datatable-striped {
+    .p-datatable-tbody {
+      > tr:nth-child(even) {
+        background: data.$tableBodyRowEvenBg;
+
+        &.p-highlight {
+          background: general.$highlightBg;
+          color: general.$highlightTextColor;
+
+          .p-row-toggler {
+            color: general.$highlightTextColor;
+
+            &:hover {
+              color: general.$highlightTextColor;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.p-datatable-sm {
+    .p-datatable-header {
+      @include mixins.scaledPadding(
+        data.$tableHeaderPadding,
+        data.$tableScaleSM
+      );
+    }
+
+    .p-datatable-thead > tr > th {
+      @include mixins.scaledPadding(
+        data.$tableHeaderCellPadding,
+        data.$tableScaleSM
+      );
+    }
+
+    .p-datatable-tbody > tr > td {
+      @include mixins.scaledPadding(
+        data.$tableBodyCellPadding,
+        data.$tableScaleSM
+      );
+    }
+
+    .p-datatable-tfoot > tr > td {
+      @include mixins.scaledPadding(
+        data.$tableFooterPadding,
+        data.$tableScaleSM
+      );
+    }
+
+    .p-datatable-footer {
+      @include mixins.scaledPadding(
+        data.$tableFooterPadding,
+        data.$tableScaleSM
+      );
+    }
+  }
+
+  &.p-datatable-lg {
+    .p-datatable-header {
+      @include mixins.scaledPadding(
+        data.$tableHeaderPadding,
+        data.$tableScaleLG
+      );
+    }
+
+    .p-datatable-thead > tr > th {
+      @include mixins.scaledPadding(
+        data.$tableHeaderCellPadding,
+        data.$tableScaleLG
+      );
+    }
+
+    .p-datatable-tbody > tr > td {
+      @include mixins.scaledPadding(
+        data.$tableBodyCellPadding,
+        data.$tableScaleLG
+      );
+    }
+
+    .p-datatable-tfoot > tr > td {
+      @include mixins.scaledPadding(
+        data.$tableFooterPadding,
+        data.$tableScaleLG
+      );
+    }
+
+    .p-datatable-footer {
+      @include mixins.scaledPadding(
+        data.$tableFooterPadding,
+        data.$tableScaleLG
+      );
+    }
+  }
+}

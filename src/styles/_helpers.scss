@@ -1,0 +1,59 @@
+@use 'variables';
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.tippy-box[data-theme~='dnv-dark'] {
+  color: variables.$basic-tones-dnv-white;
+  border-radius: 10px;
+  padding: 4px 12px;
+  background: variables.$basic-tones-dnv-medium-dark;
+}
+
+.tippy-box[data-theme~='dnv-light-sm'],
+.tippy-box[data-theme~='dnv-light-md'] {
+  color: variables.$basic-tones-dnv-dark;
+  border-radius: 10px;
+  padding: 4px 12px;
+  background: variables.$active-filter-tag-bg;
+}
+
+.tippy-box[data-theme~='dnv-light-sm'] {
+  font-size: 12px;
+}
+
+.tippy-box[data-theme~='dnv-light-md'] {
+  font-size: 14px;
+}
+
+::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #e6e6e5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #9c9a96;
+  border-radius: 56px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555555;
+}
+
+div[data-tippy-root] {
+  @media screen and (max-width: 672px) {
+    display: none !important;
+  }
+}

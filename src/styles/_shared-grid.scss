@@ -1,0 +1,22 @@
+@import 'mixins';
+@import 'variables';
+
+@include shared-grid();
+
+@media screen and (max-width: $breakpoint-xl) {
+  @include shared-grid($table-list-margin-size, $table-details-margin-size-xl);
+}
+
+@media screen and (max-width: $breakpoint-md) {
+  @include shared-grid(
+    $table-list-margin-size-md,
+    $table-details-margin-size-md
+  );
+}
+
+@media screen and (max-width: $breakpoint-sm) {
+  @include shared-grid(
+    $table-list-margin-size-sm,
+    $table-details-margin-size-sm
+  );
+}

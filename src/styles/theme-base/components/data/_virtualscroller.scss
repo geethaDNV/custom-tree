@@ -1,0 +1,31 @@
+@use 'themes/mytheme/variables/data';
+@use 'themes/mytheme/variables/general';
+
+.p-virtualscroller {
+  .p-virtualscroller-header {
+    background: data.$tableHeaderBg;
+    color: data.$tableHeaderTextColor;
+    border: data.$tableHeaderBorder;
+    border-width: data.$tableHeaderBorderWidth;
+    padding: data.$tableHeaderPadding;
+    font-weight: data.$tableHeaderFontWeight;
+  }
+
+  .p-virtualscroller-content {
+    background: data.$tableBodyRowBg;
+    color: data.$tableBodyRowTextColor;
+    border: data.$dataViewContentBorder;
+    padding: data.$dataViewContentPadding;
+  }
+
+  .p-virtualscroller-footer {
+    background: data.$tableFooterBg;
+    color: data.$tableFooterTextColor;
+    border: data.$tableFooterBorder;
+    border-width: data.$tableFooterBorderWidth;
+    padding: data.$tableFooterPadding;
+    font-weight: data.$tableFooterFontWeight;
+    border-bottom-left-radius: general.$borderRadius;
+    border-bottom-right-radius: general.$borderRadius;
+  }
+}

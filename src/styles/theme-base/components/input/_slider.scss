@@ -1,0 +1,79 @@
+@use '../../mixins';
+
+@use 'sass:math';
+@use 'themes/mytheme/variables/form';
+@use 'themes/mytheme/variables/general';
+
+.p-slider {
+  background: form.$sliderBg;
+  border: form.$sliderBorder;
+  border-radius: general.$borderRadius;
+
+  &.p-slider-horizontal {
+    height: form.$sliderHorizontalHeight;
+
+    .p-slider-handle {
+      margin-top: math.div(-1 * form.$sliderHandleHeight, 2);
+      margin-left: math.div(-1 * form.$sliderHandleWidth, 2);
+    }
+  }
+
+  &.p-slider-vertical {
+    width: form.$sliderVerticalWidth;
+
+    .p-slider-handle {
+      margin-left: math.div(-1 * form.$sliderHandleWidth, 2);
+      margin-bottom: math.div(-1 * form.$sliderHandleHeight, 2);
+    }
+  }
+
+  .p-slider-handle {
+    height: form.$sliderHandleHeight;
+    width: form.$sliderHandleWidth;
+    background: form.$sliderHandleBg;
+    border: form.$sliderHandleBorder;
+    border-radius: form.$sliderHandleBorderRadius;
+    transition: general.$formElementTransition;
+
+    &:focus {
+      @include mixins.focused();
+    }
+  }
+
+  .p-slider-range {
+    background: form.$sliderRangeBg;
+  }
+
+  &:not(.p-disabled) {
+    .p-slider-handle:hover {
+      background: form.$sliderHandleHoverBg;
+      border-color: form.$sliderHandleHoverBorderColor;
+    }
+  }
+
+  &.p-slider-animate {
+    &.p-slider-horizontal {
+      .p-slider-handle {
+        transition:
+          general.$formElementTransition,
+          left general.$transitionDuration;
+      }
+
+      .p-slider-range {
+        transition: width general.$transitionDuration;
+      }
+    }
+
+    &.p-slider-vertical {
+      .p-slider-handle {
+        transition:
+          general.$formElementTransition,
+          bottom general.$transitionDuration;
+      }
+
+      .p-slider-range {
+        transition: height general.$transitionDuration;
+      }
+    }
+  }
+}

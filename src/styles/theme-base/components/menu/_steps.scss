@@ -1,0 +1,60 @@
+@use '../../mixins';
+
+@use 'sass:math';
+@use 'themes/mytheme/variables/general';
+@use 'themes/mytheme/variables/menu';
+
+.p-steps {
+  .p-steps-item {
+    .p-menuitem-link {
+      background: transparent;
+      transition: general.$listItemTransition;
+      border-radius: general.$borderRadius;
+      background: menu.$stepsItemBg;
+
+      .p-steps-number {
+        color: menu.$stepsItemNumberColor;
+        border: menu.$stepsItemBorder;
+        background: menu.$stepsItemBg;
+        min-width: menu.$stepsItemNumberWidth;
+        height: menu.$stepsItemNumberHeight;
+        line-height: menu.$stepsItemNumberHeight;
+        font-size: menu.$stepsItemNumberFontSize;
+        z-index: 1;
+        border-radius: menu.$stepsItemNumberBorderRadius;
+      }
+
+      .p-steps-title {
+        margin-top: general.$inlineSpacing;
+        color: menu.$stepsItemNumberBorderRadius;
+      }
+
+      &:not(.p-disabled):focus-visible {
+        @include mixins.focused();
+      }
+    }
+
+    &.p-highlight {
+      .p-steps-number {
+        background: general.$highlightBg;
+        color: general.$highlightTextColor;
+      }
+
+      .p-steps-title {
+        font-weight: menu.$stepsItemActiveFontWeight;
+        color: general.$textColor;
+      }
+    }
+
+    &:before {
+      content: ' ';
+      border-top: general.$divider;
+      width: 100%;
+      top: 50%;
+      left: 0;
+      display: block;
+      position: absolute;
+      margin-top: math.div(-1 * menu.$stepsItemNumberHeight, 2);
+    }
+  }
+}

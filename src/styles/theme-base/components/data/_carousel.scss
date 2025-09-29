@@ -1,0 +1,42 @@
+@use '../../mixins';
+
+@use 'themes/mytheme/variables/general';
+@use 'themes/mytheme/variables/media';
+
+.p-carousel {
+  .p-carousel-content {
+    .p-carousel-prev,
+    .p-carousel-next {
+      @include mixins.action-icon();
+      margin: general.$inlineSpacing;
+    }
+  }
+
+  .p-carousel-indicators {
+    padding: media.$carouselIndicatorsPadding;
+
+    .p-carousel-indicator {
+      margin-right: general.$inlineSpacing;
+      margin-bottom: general.$inlineSpacing;
+
+      button {
+        background-color: media.$carouselIndicatorBg;
+        width: media.$carouselIndicatorWidth;
+        height: media.$carouselIndicatorHeight;
+        transition: general.$actionIconTransition;
+        border-radius: media.$carouselIndicatorBorderRadius;
+
+        &:hover {
+          background: media.$carouselIndicatorHoverBg;
+        }
+      }
+
+      &.p-highlight {
+        button {
+          background: general.$highlightBg;
+          color: general.$highlightTextColor;
+        }
+      }
+    }
+  }
+}

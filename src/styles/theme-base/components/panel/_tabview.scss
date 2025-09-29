@@ -1,0 +1,89 @@
+@use '../../mixins';
+
+@use 'variables';
+@use 'themes/mytheme/variables/button';
+@use 'themes/mytheme/variables/general';
+@use 'themes/mytheme/variables/panel';
+
+.p-tabview {
+  .p-tabview-nav-content {
+    scroll-padding-inline: button.$buttonIconOnlyWidth;
+  }
+
+  .p-tabview-nav {
+    background: panel.$tabviewNavBg;
+    border-bottom: 1px solid variables.$sky-breeze-blue;
+
+    li {
+      margin-right: panel.$tabviewHeaderSpacing;
+
+      .p-tabview-nav-link {
+        border-color: variables.$sky-breeze-blue;
+        background: panel.$tabviewHeaderBg;
+        color: variables.$primary-dnv-dark-blue;
+        padding: panel.$tabviewHeaderPadding;
+        font-weight: panel.$tabviewHeaderFontWeight;
+        border-top-right-radius: general.$borderRadius;
+        border-top-left-radius: general.$borderRadius;
+        transition: general.$listItemTransition;
+        margin: panel.$tabviewHeaderMargin;
+        font-weight: 700;
+
+        &:not(.p-disabled):focus-visible {
+          @include mixins.focused-inset();
+        }
+      }
+
+      &:not(.p-highlight):not(.p-disabled):hover {
+        .p-tabview-nav-link {
+          border-bottom: 3px solid;
+          background: panel.$tabviewHeaderActiveBg;
+          border-color: variables.$deep-saphire-blue;
+          color: variables.$deep-saphire-blue;
+        }
+      }
+
+      &.p-highlight {
+        .p-tabview-nav-link {
+          background: panel.$tabviewHeaderActiveBg;
+          border-bottom: 3px solid;
+          border-color: variables.$deep-saphire-blue;
+          color: variables.$deep-saphire-blue;
+        }
+      }
+    }
+  }
+
+  .p-tabview-left-icon {
+    margin-right: general.$inlineSpacing;
+  }
+
+  .p-tabview-right-icon {
+    margin-left: general.$inlineSpacing;
+  }
+
+  .p-tabview-close {
+    margin-left: general.$inlineSpacing;
+  }
+
+  .p-tabview-nav-btn.p-link {
+    background: panel.$tabviewHeaderActiveBg;
+    color: panel.$tabviewHeaderTextActiveColor;
+    width: button.$buttonIconOnlyWidth;
+    box-shadow: button.$raisedButtonShadow;
+    border-radius: 0;
+
+    &:focus-visible {
+      @include mixins.focused-inset();
+    }
+  }
+
+  .p-tabview-panels {
+    background: panel.$tabviewContentBg;
+    padding: panel.$tabviewContentPadding;
+    border: panel.$tabviewContentBorder;
+    color: panel.$tabviewContentTextColor;
+    border-bottom-right-radius: general.$borderRadius;
+    border-bottom-left-radius: general.$borderRadius;
+  }
+}

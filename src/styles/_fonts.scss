@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+
+@font-face {
+  font-family: 'DNVDisplayLight';
+  font-style: normal;
+  src: url('../assets/fonts/DNVDisplay/DNVDisplay-Light-Web.woff') format('truetype'),
+      url('../assets/fonts/DNVDisplay/DNVDisplay-Light-Web.woff2') format('truetype');
+  font-display: swap;    
+}
+
+@font-face {
+  font-family: 'DNVDisplayMedium';
+  font-style: normal;
+  src: url('../assets/fonts/DNVDisplay/DNVDisplay-Medium-Web.woff') format('truetype'),
+      url('../assets/fonts/DNVDisplay/DNVDisplay-Medium-Web.woff2') format('truetype');
+  font-display: swap;    
+}
+
+@font-face {
+  font-family: 'DNVDisplayRegular';
+  font-style: normal;
+  src: url('../assets/fonts/DNVDisplay/DNVDisplay-Regular-Web.woff') format('truetype'),
+      url('../assets/fonts/DNVDisplay/DNVDisplay-Regular-Web.woff2') format('truetype');
+  font-display: swap;
+}

@@ -1,0 +1,71 @@
+@use 'sass:list';
+@use 'sass:meta';
+
+@use 'utility';
+
+@mixin respond-to($device) {
+  $breakpoints: (
+    desktop: '(max-width: 1440px)',
+    tablet: '(max-width: 1056px)',
+    phone: '(max-width: 672px)',
+  );
+
+  @each $name, $point in $breakpoints {
+    @if $name == $device {
+      @media screen and #{$point} {
+        @content;
+      }
+    }
+  }
+}
+
+@mixin only-for($device) {
+  $breakpoints: (
+    desktop: '(min-width: 1056px)',
+    tablet: '(min-width: 672px) and (max-width: 1056px)',
+  );
+
+  @each $name, $point in $breakpoints {
+    @if $name == $device {
+      @media screen and #{$point} {
+        @content;
+      }
+    }
+  }
+}
+
+@mixin gutter-for($scale, $args...) {
+  $factor-desktop: 4;
+  $factor-tablet: 3;
+  $factor-phone: 2;
+  $directions: [];
+
+  @if meta.type-of($scale) != 'number' {
+    $directions: list.append($args, $scale);
+    $scale: 1;
+  } @else {
+    $directions: $args;
+  }
+
+  @each $direction in $directions {
+    padding-#{$direction}: utility.get-rem(
+      calc(var(--dnv-gutter-base-unitless) * $scale * $factor-desktop)
+    );
+  }
+
+  @include respond-to(tablet) {
+    @each $direction in $directions {
+      padding-#{$direction}: utility.get-rem(
+        calc(var(--dnv-gutter-base-unitless) * $scale * $factor-tablet)
+      );
+    }
+  }
+
+  @include respond-to(phone) {
+    @each $direction in $directions {
+      padding-#{$direction}: utility.get-rem(
+        calc(var(--dnv-gutter-base-unitless) * $scale * $factor-phone)
+      );
+    }
+  }
+}

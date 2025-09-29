@@ -1,0 +1,160 @@
+@use '../../mixins';
+
+@use 'themes/mytheme/variables/general';
+@use 'themes/mytheme/variables/media';
+
+.p-galleria {
+  .p-galleria-close {
+    margin: media.$galleriaCloseIconMargin;
+    background: media.$galleriaCloseIconBg;
+    color: media.$galleriaCloseIconColor;
+    width: media.$galleriaCloseIconWidth;
+    height: media.$galleriaCloseIconHeight;
+    transition: general.$actionIconTransition;
+    border-radius: media.$galleriaCloseIconBorderRadius;
+
+    .p-galleria-close-icon {
+      font-size: media.$galleriaCloseIconFontSize;
+    }
+
+    .p-icon-wrapper {
+      .p-icon {
+        width: media.$galleriaCloseIconFontSize;
+        height: media.$galleriaCloseIconFontSize;
+      }
+    }
+
+    &:hover {
+      background: media.$galleriaCloseIconHoverBg;
+      color: media.$galleriaCloseIconHoverColor;
+    }
+  }
+
+  .p-galleria-item-nav {
+    background: media.$galleriaItemNavigatorBg;
+    color: media.$galleriaItemNavigatorColor;
+    width: media.$galleriaItemNavigatorWidth;
+    height: media.$galleriaItemNavigatorHeight;
+    transition: general.$actionIconTransition;
+    border-radius: media.$galleriaItemNavigatorBorderRadius;
+    margin: media.$galleriaItemNavigatorMargin;
+
+    .p-galleria-item-prev-icon,
+    .p-galleria-item-next-icon {
+      font-size: media.$galleriaItemNavigatorFontSize;
+    }
+
+    .p-icon-wrapper {
+      .p-icon {
+        width: media.$galleriaCloseIconFontSize;
+        height: media.$galleriaCloseIconFontSize;
+      }
+    }
+
+    &:not(.p-disabled) {
+      &:hover {
+        background: media.$galleriaItemNavigatorHoverBg;
+        color: media.$galleriaItemNavigatorHoverColor;
+      }
+    }
+  }
+
+  .p-galleria-caption {
+    background: media.$galleriaCaptionBg;
+    color: media.$galleriaCaptionTextColor;
+    padding: media.$galleriaCaptionPadding;
+  }
+
+  .p-galleria-indicators {
+    padding: media.$galleriaIndicatorsPadding;
+
+    .p-galleria-indicator {
+      button {
+        background-color: media.$galleriaIndicatorBg;
+        width: media.$galleriaIndicatorWidth;
+        height: media.$galleriaIndicatorHeight;
+        transition: general.$actionIconTransition;
+        border-radius: media.$galleriaIndicatorBorderRadius;
+
+        &:hover {
+          background: media.$galleriaIndicatorHoverBg;
+        }
+      }
+
+      &.p-highlight {
+        button {
+          background: general.$highlightBg;
+          color: general.$highlightTextColor;
+        }
+      }
+    }
+  }
+
+  &.p-galleria-indicators-bottom,
+  &.p-galleria-indicators-top {
+    .p-galleria-indicator {
+      margin-right: general.$inlineSpacing;
+    }
+  }
+
+  &.p-galleria-indicators-left,
+  &.p-galleria-indicators-right {
+    .p-galleria-indicator {
+      margin-bottom: general.$inlineSpacing;
+    }
+  }
+
+  &.p-galleria-indicator-onitem {
+    .p-galleria-indicators {
+      background: media.$galleriaIndicatorsBgOnItem;
+
+      .p-galleria-indicator {
+        button {
+          background: media.$galleriaIndicatorBgOnItem;
+
+          &:hover {
+            background: media.$galleriaIndicatorHoverBgOnItem;
+          }
+        }
+
+        &.p-highlight {
+          button {
+            background: general.$highlightBg;
+            color: general.$highlightTextColor;
+          }
+        }
+      }
+    }
+  }
+
+  .p-galleria-thumbnail-container {
+    background: media.$galleriaThumbnailContainerBg;
+    padding: media.$galleriaThumbnailContainerPadding;
+
+    .p-galleria-thumbnail-prev,
+    .p-galleria-thumbnail-next {
+      margin: general.$inlineSpacing;
+      background-color: media.$galleriaThumbnailNavigatorBg;
+      color: media.$galleriaThumbnailNavigatorColor;
+      width: media.$galleriaThumbnailNavigatorWidth;
+      height: media.$galleriaThumbnailNavigatorHeight;
+      transition: general.$actionIconTransition;
+      border-radius: media.$galleriaThumbnailNavigatorBorderRadius;
+
+      &:hover {
+        background: media.$galleriaThumbnailNavigatorHoverBg;
+        color: media.$galleriaThumbnailNavigatorHoverColor;
+      }
+    }
+
+    .p-galleria-thumbnail-item-content {
+      &:focus-visible {
+        @include mixins.focused();
+      }
+    }
+  }
+}
+
+.p-galleria-mask {
+  --maskbg: #{media.$galleriaMaskBg};
+}

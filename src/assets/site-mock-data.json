@@ -1,0 +1,108 @@
+{
+  "data": [
+    {
+      "id": 200101,
+      "siteName": "Global Tech Inc. HQ",
+      "companyId": 501,
+      "companyName": "Global Tech Solutions",
+      "city": "San Francisco",
+      "countryId": 840,
+      "countryName": "United States",
+      "formattedAddress": "123 Market St, San Francisco, CA 94105, United States",
+      "siteState": "CA",
+      "siteZip": "94105",
+      "__typename": "SiteDetailsResponse"
+    },
+    {
+      "id": 200102,
+      "siteName": "Global Tech Europe",
+      "companyId": 501,
+      "companyName": "Global Tech Solutions",
+      "city": "Dublin",
+      "countryId": 372,
+      "countryName": "Ireland",
+      "formattedAddress": "70 Sir John Rogerson's Quay, Dublin 2, Ireland",
+      "siteState": "Dublin",
+      "siteZip": "D02 R296",
+      "__typename": "SiteDetailsResponse"
+    },
+    {
+      "id": 200201,
+      "siteName": "Innovate Creations Workshop",
+      "companyId": 502,
+      "companyName": "Innovate Creations Ltd.",
+      "city": "London",
+      "countryId": 826,
+      "countryName": "United Kingdom",
+      "formattedAddress": "45 Clerkenwell Rd, London, EC1M 5RS, United Kingdom",
+      "siteState": "",
+      "siteZip": "EC1M 5RS",
+      "__typename": "SiteDetailsResponse"
+    },
+    {
+      "id": 200301,
+      "siteName": "Pioneer Logistics Hub - APAC",
+      "companyId": 503,
+      "companyName": "Pioneer Logistics",
+      "city": "Singapore",
+      "countryId": 702,
+      "countryName": "Singapore",
+      "formattedAddress": "1 Changi Business Park Cres, Singapore 486075",
+      "siteState": "",
+      "siteZip": "486075",
+      "__typename": "SiteDetailsResponse"
+    },
+    {
+      "id": 200302,
+      "siteName": "Pioneer Logistics - Frankfurt",
+      "companyId": 503,
+      "companyName": "Pioneer Logistics",
+      "city": "Frankfurt am Main",
+      "countryId": 276,
+      "countryName": "Germany",
+      "formattedAddress": "Hugo-Eckener-Ring, 60549 Frankfurt am Main, Germany",
+      "siteState": "Hessen",
+      "siteZip": "60549",
+      "__typename": "SiteDetailsResponse"
+    },
+    {
+      "id": 200401,
+      "siteName": "Helios Energy Solar Farm",
+      "companyId": 504,
+      "companyName": "Helios Energy Corp.",
+      "city": "Phoenix",
+      "countryId": 840,
+      "countryName": "United States",
+      "formattedAddress": "555 Solar Panel Dr, Phoenix, AZ 85001, United States",
+      "siteState": "AZ",
+      "siteZip": "85001",
+      "__typename": "SiteDetailsResponse"
+    },
+    {
+      "id": 200501,
+      "siteName": "AquaPure Research Facility",
+      "companyId": 505,
+      "companyName": "AquaPure Water Technologies",
+      "city": "Kyoto",
+      "countryId": 392,
+      "countryName": "Japan",
+      "formattedAddress": "1-1 Kawaramachi, Nakagyo Ward, Kyoto, 604-8001, Japan",
+      "siteState": "Kyoto",
+      "siteZip": "604-8001",
+      "__typename": "SiteDetailsResponse"
+    },
+    {
+      "id": 200601,
+      "siteName": "Stark Industries - Toronto",
+      "companyId": 506,
+      "companyName": "Stark Industries Canada",
+      "city": "Toronto",
+      "countryId": 124,
+      "countryName": "Canada",
+      "formattedAddress": "100 King St W, Toronto, ON M5X 1A9, Canada",
+      "siteState": "ON",
+      "siteZip": "M5X 1A9",
+      "__typename": "SiteDetailsResponse"
+    }
+  ]
+}

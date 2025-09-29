@@ -1,0 +1,151 @@
+@use '../../mixins';
+
+@use 'sass:math';
+@use 'sass:list';
+@use 'themes/mytheme/variables/form';
+@use 'themes/mytheme/variables/general';
+@use 'themes/mytheme/variables/misc';
+@use 'themes/mytheme/variables/button';
+
+.p-treeselect {
+  background: form.$inputBg;
+  border: form.$inputBorder;
+  transition: general.$formElementTransition;
+  border-radius: general.$borderRadius;
+
+  &:not(.p-disabled):hover {
+    border-color: form.$inputHoverBorderColor;
+  }
+
+  &:not(.p-disabled).p-focus {
+    @include mixins.focused-input();
+  }
+
+  .p-treeselect-label {
+    padding: form.$inputPadding;
+    transition: general.$formElementTransition;
+
+    &.p-placeholder {
+      color: form.$inputPlaceholderTextColor;
+    }
+  }
+
+  &.p-treeselect-chip {
+    .p-treeselect-token {
+      padding: math.div(list.nth(form.$inputPadding, 1), 2)
+        list.nth(form.$inputPadding, 2);
+      margin-right: general.$inlineSpacing;
+      background: misc.$chipBg;
+      color: misc.$chipTextColor;
+      border-radius: misc.$chipBorderRadius;
+    }
+  }
+
+  .p-treeselect-trigger {
+    background: transparent;
+    color: form.$inputIconColor;
+    width: form.$inputGroupAddOnMinWidth;
+    border-top-right-radius: general.$borderRadius;
+    border-bottom-right-radius: general.$borderRadius;
+  }
+}
+
+p-treeselect.ng-invalid.ng-dirty > .p-treeselect {
+  @include mixins.invalid-input();
+}
+
+.p-inputwrapper-filled {
+  .p-treeselect {
+    &.p-treeselect-chip {
+      .p-treeselect-label {
+        padding: math.div(list.nth(form.$inputPadding, 1), 2)
+          list.nth(form.$inputPadding, 2);
+      }
+    }
+  }
+}
+
+.p-treeselect-panel {
+  background: form.$inputOverlayBg;
+  color: form.$inputListTextColor;
+  border: form.$inputOverlayBorder;
+  border-radius: general.$borderRadius;
+  box-shadow: form.$inputOverlayShadow;
+
+  .p-treeselect-header {
+    padding: form.$inputListHeaderPadding;
+    border-bottom: form.$inputListHeaderBorder;
+    color: form.$inputListHeaderTextColor;
+    background: form.$inputOverlayHeaderBg;
+    margin: form.$inputListHeaderMargin;
+    border-top-right-radius: general.$borderRadius;
+    border-top-left-radius: general.$borderRadius;
+
+    .p-treeselect-filter-container {
+      margin-right: general.$inlineSpacing;
+
+      .p-treeselect-filter {
+        padding-right: list.nth(form.$inputPadding, 2) +
+          general.$primeIconFontSize;
+      }
+
+      .p-treeselect-filter-icon {
+        right: list.nth(form.$inputPaddingOne, 2);
+        color: form.$inputIconColor;
+      }
+
+      &.p-treeselect-clearable-filter {
+        .p-treeselect-filter {
+          padding-right: 2 *
+            (list.nth(form.$inputPadding, 2) + general.$primeIconFontSize);
+        }
+
+        .p-treeselect-filter-clear-icon {
+          right: (2 * list.nth(form.$inputPadding, 2)) +
+            general.$primeIconFontSize;
+        }
+      }
+    }
+
+    .p-treeselect-close {
+      @include mixins.action-icon();
+    }
+  }
+
+  .p-treeselect-items-wrapper {
+    .p-tree {
+      border: 0 none;
+    }
+
+    .p-treeselect-empty-message {
+      padding: form.$inputListItemPadding;
+      color: form.$inputListItemTextColor;
+      background: form.$inputListItemBg;
+    }
+  }
+}
+
+.p-input-filled {
+  .p-treeselect {
+    background: form.$inputFilledBg;
+
+    &:not(.p-disabled):hover {
+      background-color: form.$inputFilledHoverBg;
+    }
+
+    &:not(.p-disabled).p-focus {
+      background-color: form.$inputFilledFocusBg;
+    }
+  }
+}
+
+p-treeselect.p-treeselect-clearable {
+  .p-treeselect-label-container {
+    padding-right: list.nth(form.$inputPadding, 2) + general.$primeIconFontSize;
+  }
+
+  .p-treeselect-clear-icon {
+    color: form.$inputIconColor;
+    right: button.$buttonIconOnlyWidth;
+  }
+}

@@ -1,0 +1,45 @@
+@use '../../mixins';
+
+@use 'themes/mytheme/variables/general';
+@use 'themes/mytheme/variables/menu';
+@use 'themes/mytheme/variables/overlay';
+
+.p-contextmenu {
+  padding: menu.$verticalMenuPadding;
+  background: menu.$overlayMenuBg;
+  color: menu.$menuTextColor;
+  border: menu.$overlayMenuBorder;
+  box-shadow: menu.$overlayMenuShadow;
+  border-radius: general.$borderRadius;
+  width: menu.$menuWidth;
+
+  .p-contextmenu-root-list {
+    outline: 0 none;
+  }
+
+  .p-submenu-list {
+    padding: menu.$verticalMenuPadding;
+    background: menu.$overlayMenuBg;
+    border: menu.$overlayMenuBorder;
+    box-shadow: menu.$overlayMenuShadow;
+    border-radius: general.$borderRadius;
+  }
+
+  .p-menuitem {
+    @include mixins.menuitem();
+  }
+
+  .p-menuitem-separator {
+    border-top: general.$divider;
+    margin: menu.$menuSeparatorMargin;
+  }
+
+  .p-submenu-icon {
+    font-size: menu.$menuitemSubmenuIconFontSize;
+
+    &.p-icon {
+      width: menu.$menuitemSubmenuIconFontSize;
+      height: menu.$menuitemSubmenuIconFontSize;
+    }
+  }
+}

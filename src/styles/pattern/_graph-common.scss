@@ -1,0 +1,68 @@
+@use 'layout';
+@use 'mixins';
+@use 'utility';
+@use 'typography';
+@use 'colors';
+@use 'mixture';
+
+ .filters {
+   display: flex;
+   flex-wrap: wrap;
+   align-items: center;
+   gap: 11px;
+   grid-area: filters;
+   width: 100%;
+   min-width: 0;
+   box-sizing: border-box;
+   padding: utility.get-rem(20) 0 utility.get-rem(20) utility.get-rem(24);
+   background: #e9f7fc;
+
+   > *:not(.reset-btn) {
+     flex: 1 1 220px;
+     max-width: 22.8%;
+     box-sizing: border-box;
+     text-overflow: ellipsis;
+     white-space: nowrap;
+   }
+
+   .reset-btn {
+     flex: 0 0 auto;
+     max-width: 11.2%;
+     padding-right: 1.6875rem;
+     flex-direction: row-reverse;
+     margin-right: 0rem ;
+   }
+
+   @include mixins.respond-to(phone) {
+     flex-direction: column;
+     align-items: stretch;
+     gap: utility.get-rem(10);
+     padding: utility.get-rem(8) utility.get-rem(4);
+     > * {
+       max-width: 100%;
+       min-width: 0;
+     }
+     .reset-btn {
+       margin-left: 0;
+       margin-top: utility.get-rem(8);
+       align-self: stretch;
+     }
+   }
+ }
+
+.reset-btn {
+    min-width: unset;
+    padding-right: utility.get-rem(12);
+}
+
+ @media screen and (max-width: 672px) {
+    .filters {
+    > *:not(.reset-btn) {
+        max-width: 100% !important;
+        flex: inherit !important;
+    }
+    .reset-btn{
+      margin-left: 4.2rem !important;
+    }
+   }
+ }

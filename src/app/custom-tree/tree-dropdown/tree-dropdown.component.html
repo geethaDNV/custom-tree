@@ -1,0 +1,105 @@
+<ng-container>
+  <div class="tree-dropdown">
+    <div
+      aria-haspopup="listbox"
+      class="tree-dropdown-input"
+      role="button"
+      tabindex="0"
+      [attr.aria-label]="ariaLabel()"
+      [class.active]="dropdownOpen"
+      (click)="toggleDropdown()"
+       (keydown)="toggleDropdown()">
+      <span
+        class="tree-dropdown-label"
+        tooltipPosition="top"
+        [pTooltip]="selectedTooltip">
+        {{ selectedLabel }}
+      </span>
+      <span class="tree-dropdown-arrow">
+        <svg
+          fill="none"
+          height="18"
+          viewBox="0 0 18 18"
+          width="18"
+          xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M4.5 7.5L9 12L13.5 7.5"
+            stroke="#1a1a1a"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2" />
+        </svg>
+      </span>
+    </div>
+    @if (dropdownOpen) {
+      <div class="tree-dropdown-panel">
+        @if (filteredNodes.length > 0 || searchTerm) {
+          <div class="tree-all-option">
+            <input
+              id="tree-all-checkbox"
+              type="checkbox"
+              [checked]="allSelected"
+              [indeterminate]="someSelected"
+              (change)="onSelectAll($event)" />
+            <label for="tree-all-checkbox">All</label>
+          </div>
+          <div class="tree-dropdown-search">
+            <input
+              autocomplete="off"
+              class="tree-dropdown-searchbox"
+              type="text"
+              [(ngModel)]="searchTerm"
+              (ngModelChange)="onSearchChange()" />
+            <span class="tree-dropdown-search-icon">
+              <svg fill="none" height="16" viewBox="0 0 16 16" width="16">
+                <circle
+                  cx="7"
+                  cy="7"
+                  r="5.5"
+                  stroke="#B0B3C6"
+                  stroke-width="1.5" />
+                <path
+                  d="M11.5 11.5L15 15"
+                  stroke="#B0B3C6"
+                  stroke-linecap="round"
+                  stroke-width="1.5" />
+              </svg>
+            </span>
+          </div>
+          @if (filteredNodes.length > 0) {
+            <div class="tree-dropdown-panel-inner">
+              <!-- Debug: shouldUseVirtualScroll = {{ shouldUseVirtualScroll }}, nodes count = {{ filteredNodes.length }} -->
+              @if (shouldUseVirtualScroll) {
+                <shared-virtual-tree
+                  [itemHeight]="virtualScrollItemHeight()"
+                  [nodes]="filteredNodes"
+                  [scrollHeight]="virtualScrollHeight()"
+                  (expandedStateChange)="onExpandedStateChange($event)"
+                  (selectionChange)="onNodeSelect($event)">
+                </shared-virtual-tree>
+              } @else {
+                <shared-tree
+                  [nodes]="filteredNodes"
+                  (expandedStateChange)="onExpandedStateChange($event)"
+                  (selectionChange)="onNodeSelect($event)">
+                </shared-tree>
+              }
+            </div>
+          } @else {
+            <div class="no-data-available">
+              <ng-container *ngTemplateOutlet="emptyTemplate"></ng-container>
+            </div>
+          }
+        } @else {
+          <div class="no-data-available">
+            <ng-container *ngTemplateOutlet="emptyTemplate"></ng-container>
+          </div>
+        }
+      </div>
+    }
+  </div>
+
+  <ng-template #emptyTemplate>
+    <p>{{ 'No data available' }}</p>
+  </ng-template>
+</ng-container>

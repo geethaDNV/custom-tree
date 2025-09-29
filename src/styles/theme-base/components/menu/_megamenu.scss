@@ -1,0 +1,60 @@
+@use '../../mixins';
+
+@use 'themes/mytheme/variables/general';
+@use 'themes/mytheme/variables/menu';
+
+.p-megamenu {
+  padding: menu.$horizontalMenuPadding;
+  background: menu.$horizontalMenuBg;
+  color: menu.$horizontalMenuTextColor;
+  border: menu.$horizontalMenuBorder;
+  border-radius: general.$borderRadius;
+
+  .p-megamenu-root-list {
+    outline: 0 none;
+  }
+
+  .p-menuitem {
+    @include mixins.menuitem();
+  }
+
+  .p-megamenu-panel {
+    background: menu.$overlayMenuBg;
+    color: menu.$menuTextColor;
+    border: menu.$overlayMenuBorder;
+    box-shadow: menu.$overlayMenuShadow;
+  }
+
+  .p-submenu-header {
+    margin: menu.$submenuHeaderMargin;
+    padding: menu.$submenuHeaderPadding;
+    color: menu.$submenuHeaderTextColor;
+    background: menu.$submenuHeaderBg;
+    font-weight: menu.$submenuHeaderFontWeight;
+    border-top-right-radius: general.$borderRadius;
+    border-top-left-radius: general.$borderRadius;
+  }
+
+  .p-submenu-list {
+    padding: menu.$verticalMenuPadding;
+    width: menu.$menuWidth;
+
+    .p-menuitem-separator {
+      border-top: general.$divider;
+      margin: menu.$menuSeparatorMargin;
+    }
+  }
+
+  &.p-megamenu-vertical {
+    width: menu.$menuWidth;
+    padding: menu.$verticalMenuPadding;
+  }
+
+  &.p-megamenu-horizontal {
+    .p-megamenu-root-list {
+      > .p-menuitem {
+        @include mixins.horizontal-rootmenuitem();
+      }
+    }
+  }
+}

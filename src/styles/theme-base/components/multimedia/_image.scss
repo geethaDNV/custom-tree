@@ -1,0 +1,52 @@
+@use 'themes/mytheme/variables/general';
+@use 'themes/mytheme/variables/media';
+
+.p-image-mask {
+  --maskbg: #{media.$imageMaskBg};
+}
+
+.p-image-preview-indicator {
+  background-color: transparent;
+  color: media.$imagePreviewIndicatorColor;
+  transition: general.$actionIconTransition;
+}
+
+.p-image-preview-container {
+  &:hover {
+    > .p-image-preview-indicator {
+      background-color: media.$imagePreviewIndicatorBg;
+    }
+  }
+}
+
+.p-image-toolbar {
+  padding: media.$imagePreviewToolbarPadding;
+}
+
+.p-image-action.p-link {
+  color: media.$imagePreviewActionIconColor;
+  background-color: media.$imagePreviewActionIconBg;
+  width: media.$imagePreviewActionIconWidth;
+  height: media.$imagePreviewActionIconHeight;
+  border-radius: media.$imagePreviewActionIconBorderRadius;
+  transition: general.$actionIconTransition;
+  margin-right: general.$inlineSpacing;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &:hover {
+    color: media.$imagePreviewActionIconHoverColor;
+    background-color: media.$imagePreviewActionIconHoverBg;
+  }
+
+  i {
+    font-size: media.$imagePreviewActionIconFontSize;
+  }
+
+  .p-icon {
+    width: media.$imagePreviewActionIconFontSize;
+    height: media.$imagePreviewActionIconFontSize;
+  }
+}

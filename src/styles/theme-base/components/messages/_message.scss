@@ -1,0 +1,147 @@
+@use '../../mixins';
+
+@use 'variables';
+@use 'themes/mytheme/variables/general';
+@use 'themes/mytheme/variables/message';
+
+.p-message {
+  margin: message.$messageMargin;
+  border-radius: general.$borderRadius;
+
+  .p-message-wrapper {
+    padding: message.$messagePadding;
+    color: variables.$basic-tones-dnv-dark;
+  }
+
+  .message-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    .flex-item {
+      display: flex;
+      align-items: center;
+
+      &.message-actions {
+        justify-content: flex-end;
+      }
+    }
+  }
+
+  .p-button {
+    padding: 0.5rem 0.75rem;
+  }
+
+  .p-message-close {
+    width: general.$actionIconWidth;
+    height: general.$actionIconHeight;
+    border-radius: general.$actionIconBorderRadius;
+    background: transparent;
+    transition: general.$actionIconTransition;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.5);
+    }
+
+    &:focus-visible {
+      @include mixins.focused();
+    }
+  }
+
+  &.p-message-info {
+    background: message.$infoMessageBg;
+    border-width: message.$messageBorderWidth;
+    color: message.$infoMessageTextColor;
+
+    .p-message-icon {
+      color: message.$infoMessageIconColor;
+    }
+
+    .p-message-close {
+      color: message.$infoMessageIconColor;
+    }
+  }
+
+  &.p-message-success {
+    background: message.$successMessageBg;
+    border: message.$successMessageBorder;
+    border-width: message.$messageBorderWidth;
+    color: message.$successMessageTextColor;
+
+    .p-message-icon {
+      color: message.$successMessageIconColor;
+    }
+
+    .p-message-close {
+      color: message.$successMessageIconColor;
+    }
+  }
+
+  &.p-message-warn {
+    background: message.$warningMessageBg;
+    border: message.$warningMessageBorder;
+    border-width: message.$messageBorderWidth;
+    color: message.$warningMessageTextColor;
+
+    .p-message-icon {
+      color: message.$warningMessageIconColor;
+    }
+
+    .p-message-close {
+      color: message.$warningMessageIconColor;
+    }
+  }
+
+  &.p-message-error {
+    background: message.$errorMessageBg;
+    border: message.$errorMessageBorder;
+    border-width: message.$messageBorderWidth;
+    color: message.$errorMessageTextColor;
+
+    .p-message-icon {
+      color: message.$errorMessageIconColor;
+    }
+
+    .p-message-close {
+      color: message.$errorMessageIconColor;
+    }
+  }
+
+  &.p-message-alert {
+    background: message.$alertMessageBg;
+    border: message.$errorMessageBorder;
+    border-width: message.$messageBorderWidth;
+    color: message.$errorMessageTextColor;
+
+    .p-message-icon {
+      color: message.$errorMessageIconColor;
+    }
+
+    .p-message-close {
+      color: message.$errorMessageIconColor;
+    }
+  }
+
+  .p-message-text {
+    font-size: message.$messageTextFontSize;
+    font-weight: message.$messageTextFontWeight;
+  }
+
+  .p-message-icon {
+    font-size: message.$messageIconFontSize;
+    margin-right: general.$inlineSpacing;
+  }
+
+  .p-icon {
+    width: message.$messageIconFontSize;
+    height: message.$messageIconFontSize;
+  }
+
+  .p-message-summary {
+    font-weight: 700;
+  }
+
+  .p-message-detail {
+    margin-left: general.$inlineSpacing;
+  }
+}

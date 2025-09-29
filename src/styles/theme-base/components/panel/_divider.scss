@@ -1,0 +1,34 @@
+@use 'themes/mytheme/variables/general';
+@use 'themes/mytheme/variables/panel';
+
+.p-divider {
+  .p-divider-content {
+    background-color: panel.$panelContentBg;
+  }
+
+  &.p-divider-horizontal {
+    margin: panel.$dividerHorizontalMargin;
+    padding: panel.$dividerHorizontalPadding;
+
+    &:before {
+      border-top: panel.$dividerSize panel.$dividerColor;
+    }
+
+    .p-divider-content {
+      padding: 0 general.$inlineSpacing;
+    }
+  }
+
+  &.p-divider-vertical {
+    margin: panel.$dividerVerticalMargin;
+    padding: panel.$dividerVerticalPadding;
+
+    &:before {
+      border-left: panel.$dividerSize panel.$dividerColor;
+    }
+
+    .p-divider-content {
+      padding: general.$inlineSpacing 0;
+    }
+  }
+}

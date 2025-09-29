@@ -1,0 +1,431 @@
+@use '../../mixins';
+
+@use 'themes/mytheme/variables/general';
+@use 'themes/mytheme/variables/button';
+
+.p-splitbutton {
+  border-radius: general.$borderRadius;
+
+  &.p-button-outlined {
+    > .p-button {
+      background-color: transparent;
+      color: button.$buttonBg;
+      border: button.$outlinedButtonBorder;
+
+      &:not(:disabled):hover {
+        background: rgba(button.$buttonBg, button.$textButtonHoverBgOpacity);
+        color: button.$buttonBg;
+      }
+
+      &:not(:disabled):active {
+        background: rgba(button.$buttonBg, button.$textButtonActiveBgOpacity);
+        color: button.$buttonBg;
+      }
+    }
+
+    &.p-button-plain {
+      > .p-button {
+        color: button.$plainButtonTextColor;
+        border-color: button.$plainButtonTextColor;
+
+        &:not(:disabled):hover {
+          background: button.$plainButtonHoverBgColor;
+          color: button.$plainButtonTextColor;
+        }
+
+        &:not(:disabled):active {
+          background: button.$plainButtonActiveBgColor;
+          color: button.$plainButtonTextColor;
+        }
+      }
+    }
+  }
+
+  &.p-button-text {
+    > .p-button {
+      background-color: transparent;
+      color: button.$buttonBg;
+      border-color: transparent;
+
+      &:not(:disabled):hover {
+        background: rgba(button.$buttonBg, button.$textButtonHoverBgOpacity);
+        color: button.$buttonBg;
+        border-color: transparent;
+      }
+
+      &:not(:disabled):active {
+        background: rgba(button.$buttonBg, button.$textButtonActiveBgOpacity);
+        color: button.$buttonBg;
+        border-color: transparent;
+      }
+    }
+
+    &.p-button-plain {
+      > .p-button {
+        color: button.$plainButtonTextColor;
+
+        &:not(:disabled):hover {
+          background: button.$plainButtonHoverBgColor;
+          color: button.$plainButtonTextColor;
+        }
+
+        &:not(:disabled):active {
+          background: button.$plainButtonActiveBgColor;
+          color: button.$plainButtonTextColor;
+        }
+      }
+    }
+  }
+
+  &.p-button-raised {
+    box-shadow: button.$raisedButtonShadow;
+  }
+
+  &.p-button-rounded {
+    border-radius: button.$roundedButtonBorderRadius;
+
+    > .p-button {
+      border-radius: button.$roundedButtonBorderRadius;
+    }
+  }
+
+  &.p-button-sm {
+    > .p-button {
+      @include mixins.scaledFontSize(general.$fontSize, general.$scaleSM);
+      @include mixins.scaledPadding(button.$buttonPadding, general.$scaleSM);
+
+      .p-button-icon {
+        @include mixins.scaledFontSize(
+          general.$primeIconFontSize,
+          general.$scaleSM
+        );
+      }
+    }
+  }
+
+  &.p-button-lg {
+    > .p-button {
+      @include mixins.scaledFontSize(general.$fontSize, general.$scaleLG);
+      @include mixins.scaledPadding(button.$buttonPadding, general.$scaleLG);
+
+      .p-button-icon {
+        @include mixins.scaledFontSize(
+          general.$primeIconFontSize,
+          general.$scaleLG
+        );
+      }
+    }
+  }
+}
+
+.p-splitbutton.p-button-secondary {
+  &.p-button-outlined {
+    > .p-button {
+      background-color: transparent;
+      color: button.$secondaryButtonBg;
+      border: button.$outlinedButtonBorder;
+
+      &:not(:disabled):hover {
+        background: rgba(
+          button.$secondaryButtonBg,
+          button.$textButtonHoverBgOpacity
+        );
+        color: button.$secondaryButtonBg;
+      }
+
+      &:not(:disabled):active {
+        background: rgba(
+          button.$secondaryButtonBg,
+          button.$textButtonActiveBgOpacity
+        );
+        color: button.$secondaryButtonBg;
+      }
+    }
+  }
+
+  &.p-button-text {
+    > .p-button {
+      background-color: transparent;
+      color: button.$secondaryButtonBg;
+      border-color: transparent;
+
+      &:not(:disabled):hover {
+        background: rgba(
+          button.$secondaryButtonBg,
+          button.$textButtonHoverBgOpacity
+        );
+        border-color: transparent;
+        color: button.$secondaryButtonBg;
+      }
+
+      &:not(:disabled):active {
+        background: rgba(
+          button.$secondaryButtonBg,
+          button.$textButtonActiveBgOpacity
+        );
+        border-color: transparent;
+        color: button.$secondaryButtonBg;
+      }
+    }
+  }
+}
+
+.p-splitbutton.p-button-info {
+  &.p-button-outlined {
+    > .p-button {
+      background-color: transparent;
+      color: button.$infoButtonBg;
+      border: button.$outlinedButtonBorder;
+
+      &:not(:disabled):hover {
+        background: rgba(
+          button.$infoButtonBg,
+          button.$textButtonHoverBgOpacity
+        );
+        color: button.$infoButtonBg;
+      }
+
+      &:not(:disabled):active {
+        background: rgba(
+          button.$infoButtonBg,
+          button.$textButtonActiveBgOpacity
+        );
+        color: button.$infoButtonBg;
+      }
+    }
+  }
+
+  &.p-button-text {
+    > .p-button {
+      background-color: transparent;
+      color: button.$infoButtonBg;
+      border-color: transparent;
+
+      &:not(:disabled):hover {
+        background: rgba(
+          button.$infoButtonBg,
+          button.$textButtonHoverBgOpacity
+        );
+        border-color: transparent;
+        color: button.$infoButtonBg;
+      }
+
+      &:not(:disabled):active {
+        background: rgba(
+          button.$infoButtonBg,
+          button.$textButtonActiveBgOpacity
+        );
+        border-color: transparent;
+        color: button.$infoButtonBg;
+      }
+    }
+  }
+}
+
+.p-splitbutton.p-button-success {
+  &.p-button-outlined {
+    > .p-button {
+      background-color: transparent;
+      color: button.$successButtonBg;
+      border: button.$outlinedButtonBorder;
+
+      &:not(:disabled):hover {
+        background: rgba(
+          button.$successButtonBg,
+          button.$textButtonHoverBgOpacity
+        );
+        color: button.$successButtonBg;
+      }
+
+      &:not(:disabled):active {
+        background: rgba(
+          button.$successButtonBg,
+          button.$textButtonActiveBgOpacity
+        );
+        color: button.$successButtonBg;
+      }
+    }
+  }
+
+  &.p-button-text {
+    > .p-button {
+      background-color: transparent;
+      color: button.$successButtonBg;
+      border-color: transparent;
+
+      &:not(:disabled):hover {
+        background: rgba(
+          button.$successButtonBg,
+          button.$textButtonHoverBgOpacity
+        );
+        border-color: transparent;
+        color: button.$successButtonBg;
+      }
+
+      &:not(:disabled):active {
+        background: rgba(
+          button.$successButtonBg,
+          button.$textButtonActiveBgOpacity
+        );
+        border-color: transparent;
+        color: button.$successButtonBg;
+      }
+    }
+  }
+}
+
+.p-splitbutton.p-button-warning {
+  &.p-button-outlined {
+    > .p-button {
+      background-color: transparent;
+      color: button.$warningButtonBg;
+      border: button.$outlinedButtonBorder;
+
+      &:not(:disabled):hover {
+        background: rgba(
+          button.$warningButtonBg,
+          button.$textButtonHoverBgOpacity
+        );
+        color: button.$warningButtonBg;
+      }
+
+      &:not(:disabled):active {
+        background: rgba(
+          button.$warningButtonBg,
+          button.$textButtonActiveBgOpacity
+        );
+        color: button.$warningButtonBg;
+      }
+    }
+  }
+
+  &.p-button-text {
+    > .p-button {
+      background-color: transparent;
+      color: button.$warningButtonBg;
+      border-color: transparent;
+
+      &:not(:disabled):hover {
+        background: rgba(
+          button.$warningButtonBg,
+          button.$textButtonHoverBgOpacity
+        );
+        border-color: transparent;
+        color: button.$warningButtonBg;
+      }
+
+      &:not(:disabled):active {
+        background: rgba(
+          button.$warningButtonBg,
+          button.$textButtonActiveBgOpacity
+        );
+        border-color: transparent;
+        color: button.$warningButtonBg;
+      }
+    }
+  }
+}
+
+.p-splitbutton.p-button-help {
+  &.p-button-outlined {
+    > .p-button {
+      background-color: transparent;
+      color: button.$helpButtonBg;
+      border: button.$outlinedButtonBorder;
+
+      &:not(:disabled):hover {
+        background: rgba(
+          button.$helpButtonBg,
+          button.$textButtonHoverBgOpacity
+        );
+        color: button.$helpButtonBg;
+      }
+
+      &:not(:disabled):active {
+        background: rgba(
+          button.$helpButtonBg,
+          button.$textButtonActiveBgOpacity
+        );
+        color: button.$helpButtonBg;
+      }
+    }
+  }
+
+  &.p-button-text {
+    > .p-button {
+      background-color: transparent;
+      color: button.$helpButtonBg;
+      border-color: transparent;
+
+      &:not(:disabled):hover {
+        background: rgba(
+          button.$helpButtonBg,
+          button.$textButtonHoverBgOpacity
+        );
+        border-color: transparent;
+        color: button.$helpButtonBg;
+      }
+
+      &:not(:disabled):active {
+        background: rgba(
+          button.$helpButtonBg,
+          button.$textButtonActiveBgOpacity
+        );
+        border-color: transparent;
+        color: button.$helpButtonBg;
+      }
+    }
+  }
+}
+
+.p-splitbutton.p-button-danger {
+  &.p-button-outlined {
+    > .p-button {
+      background-color: transparent;
+      color: button.$dangerButtonBg;
+      border: button.$outlinedButtonBorder;
+
+      &:not(:disabled):hover {
+        background: rgba(
+          button.$dangerButtonBg,
+          button.$textButtonHoverBgOpacity
+        );
+        color: button.$dangerButtonBg;
+      }
+
+      &:not(:disabled):active {
+        background: rgba(
+          button.$dangerButtonBg,
+          button.$textButtonActiveBgOpacity
+        );
+        color: button.$dangerButtonBg;
+      }
+    }
+  }
+
+  &.p-button-text {
+    > .p-button {
+      background-color: transparent;
+      color: button.$dangerButtonBg;
+      border-color: transparent;
+
+      &:not(:disabled):hover {
+        background: rgba(
+          button.$dangerButtonBg,
+          button.$textButtonHoverBgOpacity
+        );
+        border-color: transparent;
+        color: button.$dangerButtonBg;
+      }
+
+      &:not(:disabled):active {
+        background: rgba(
+          button.$dangerButtonBg,
+          button.$textButtonActiveBgOpacity
+        );
+        border-color: transparent;
+        color: button.$dangerButtonBg;
+      }
+    }
+  }
+}

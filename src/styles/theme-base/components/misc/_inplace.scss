@@ -1,0 +1,21 @@
+@use '../../mixins';
+
+@use 'themes/mytheme/variables/general';
+@use 'themes/mytheme/variables/misc';
+
+.p-inplace {
+  .p-inplace-display {
+    padding: misc.$inplacePadding;
+    border-radius: general.$borderRadius;
+    transition: general.$formElementTransition;
+
+    &:not(.p-disabled):hover {
+      background: misc.$inplaceHoverBg;
+      color: misc.$inplaceTextHoverColor;
+    }
+
+    &:focus {
+      @include mixins.focused();
+    }
+  }
+}

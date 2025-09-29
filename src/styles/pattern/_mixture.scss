@@ -1,0 +1,117 @@
+@use 'sass:color';
+@use 'sass:string';
+
+@use 'colors';
+@use 'mixins';
+@use 'typography';
+@use 'utility';
+
+/**
+ * Shadow Styles
+ */
+$shadow-pattern: string.unique-id();
+$shadow-default-pattern: string.unique-id();
+$shadow-hover-pattern: string.unique-id();
+$shadow-modal-pattern: string.unique-id();
+$shadow-focus-pattern: string.unique-id();
+
+%#{$shadow-pattern} {
+  border-radius: 10px;
+  background-color: colors.get-color('UiWhite');
+}
+
+%#{$shadow-default-pattern} {
+  @extend %#{$shadow-pattern};
+  box-shadow: 0px 1px 3px 0px
+    color.scale(colors.get-color('DarkBlue'), $alpha: -75%);
+}
+
+%#{$shadow-hover-pattern} {
+  @extend %#{$shadow-pattern};
+  box-shadow: 0px 6px 10px -3px
+    color.scale(colors.get-color('DarkBlue'), $alpha: -80%);
+}
+
+%#{$shadow-modal-pattern} {
+  @extend %#{$shadow-pattern};
+  box-shadow: 0px 8px 15px -3px
+    color.scale(colors.get-color('DarkBlue'), $alpha: -80%);
+}
+
+%#{$shadow-focus-pattern} {
+  @extend %#{$shadow-pattern};
+  box-shadow: 0px 0px 0px 2px colors.get-color('Cyan');
+}
+
+/**
+ * Form Styles
+ */
+$input-text-pattern: string.unique-id();
+
+%#{$input-text-pattern} {
+  @extend %#{typography.$text-l-pattern};
+  height: utility.get-rem(45);
+  display: flex;
+  align-items: center;
+  padding: utility.get-rem(12);
+  border: 1px solid colors.get-color('Sandstone80');
+  border-radius: utility.get-rem(8);
+  background-color: colors.get-color('UiWhite');
+  color: colors.get-color('Sandstone40');
+  outline: 0;
+
+  &:hover {
+    border-color: colors.get-color('Sandstone70');
+  }
+
+  &:active {
+    border-color: colors.get-color('Sandstone60');
+  }
+
+  &:focus {
+    border-color: colors.get-color('Cyan');
+  }
+
+  &:disabled {
+    background-color: colors.get-color('Sandstone95');
+  }
+}
+
+/**
+ * Dropdown Styles
+ */
+$dropdown-element-pattern: string.unique-id();
+$dropdown-input-wrapper-pattern: string.unique-id();
+$dropdown-option-pattern: string.unique-id();
+
+%#{$dropdown-element-pattern} {
+  @extend %#{typography.$text-l-pattern};
+  height: 100%;
+  display: flex;
+  color: colors.get-color('UiBlack');
+}
+
+%#{$dropdown-input-wrapper-pattern} {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: utility.get-rem(12);
+  border: 1px solid colors.get-color('Sandstone80');
+
+  &.p-focus {
+    border-color: colors.get-color('Sandstone60');
+  }
+}
+
+%#{$dropdown-option-pattern} {
+  height: utility.get-rem(40);
+  display: flex;
+  align-items: center;
+  gap: utility.get-rem(8);
+  padding: utility.get-rem(0) utility.get-rem(10);
+  border-radius: utility.get-rem(10);
+
+  &:hover {
+    background-color: colors.get-color('Sandstone95');
+  }
+}

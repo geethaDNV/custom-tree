@@ -1,0 +1,14 @@
+@use 'themes/mytheme/variables/form';
+@use 'themes/mytheme/variables/panel';
+
+.p-terminal {
+  background: panel.$panelContentBg;
+  color: panel.$panelContentTextColor;
+  border: panel.$panelContentBorder;
+  padding: panel.$panelContentPadding;
+
+  .p-terminal-input {
+    font-feature-settings: var(--font-feature-settings, normal);
+    font-size: form.$inputTextFontSize;
+  }
+}

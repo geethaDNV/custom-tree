@@ -1,0 +1,180 @@
+@use '../../mixins';
+
+@use 'sass:math';
+@use 'sass:list';
+@use 'themes/mytheme/variables/form';
+@use 'themes/mytheme/variables/general';
+@use 'themes/mytheme/variables/misc';
+@use 'themes/mytheme/variables/menu';
+
+.p-multiselect {
+  background: form.$inputBg;
+  border: form.$inputBorder;
+  transition: general.$formElementTransition;
+  border-radius: general.$borderRadius;
+
+  &:not(.p-disabled):hover {
+    border-color: form.$inputHoverBorderColor;
+  }
+
+  &:not(.p-disabled).p-focus {
+    @include mixins.focused-input();
+  }
+
+  .p-multiselect-label {
+    padding: form.$inputPadding;
+    transition: general.$formElementTransition;
+
+    &.p-placeholder {
+      color: form.$inputPlaceholderTextColor;
+    }
+  }
+
+  &.p-multiselect-chip {
+    .p-multiselect-token {
+      padding: math.div(list.nth(form.$inputPadding, 1), 2)
+        list.nth(form.$inputPadding, 2);
+      margin-right: general.$inlineSpacing;
+      background: misc.$chipBg;
+      color: misc.$chipTextColor;
+      border-radius: misc.$chipBorderRadius;
+
+      .p-multiselect-token-icon {
+        margin-left: general.$inlineSpacing;
+      }
+    }
+  }
+
+  .p-multiselect-trigger {
+    background: transparent;
+    color: form.$inputIconColor;
+    width: form.$inputGroupAddOnMinWidth;
+    border-top-right-radius: general.$borderRadius;
+    border-bottom-right-radius: general.$borderRadius;
+  }
+}
+
+.p-inputwrapper-filled {
+  &.p-multiselect {
+    &.p-multiselect-chip {
+      .p-multiselect-label {
+        padding: math.div(list.nth(form.$inputPadding, 1), 2)
+          list.nth(form.$inputPadding, 2);
+      }
+    }
+  }
+}
+
+.p-multiselect-clearable {
+  .p-multiselect-label-container {
+    padding-right: list.nth(form.$inputPadding, 2) + general.$primeIconFontSize;
+  }
+
+  .p-multiselect-clear-icon {
+    color: form.$inputIconColor;
+    right: form.$inputGroupAddOnMinWidth;
+  }
+}
+
+.p-multiselect-panel {
+  background: form.$inputOverlayBg;
+  border: form.$inputOverlayBorder;
+  border-radius: general.$borderRadius;
+  box-shadow: form.$inputOverlayShadow;
+
+  .p-multiselect-header {
+    padding: form.$inputListHeaderPadding;
+    border-bottom: form.$inputListHeaderBorder;
+    background: form.$inputOverlayHeaderBg;
+    margin: form.$inputListHeaderMargin;
+    border-top-right-radius: general.$borderRadius;
+    border-top-left-radius: general.$borderRadius;
+
+    .p-multiselect-filter-container {
+      .p-inputtext {
+        padding-right: list.nth(form.$inputPadding, 2) +
+          general.$primeIconFontSize;
+      }
+
+      .p-multiselect-filter-icon {
+        right: list.nth(form.$inputPaddingOne, 2);
+        color: form.$inputIconColor;
+      }
+    }
+
+    .p-checkbox {
+      margin: 0;
+    }
+
+    .p-multiselect-close {
+      margin-left: general.$inlineSpacing;
+      @include mixins.action-icon();
+    }
+  }
+
+  .p-multiselect-items {
+    padding: form.$inputListPadding;
+
+    .p-multiselect-item {
+      margin: form.$inputListItemMargin;
+      padding: form.$inputListItemPadding;
+      border: form.$inputListItemBorder;
+      background: form.$inputListItemBg;
+      transition: general.$listItemTransition;
+      border-radius: form.$inputListItemBorderRadius;
+
+      &.p-highlight {
+        background: general.$highlightBg;
+
+        &.p-focus {
+          background: general.$highlightFocusBg;
+        }
+      }
+
+      &:not(.p-highlight):not(.p-disabled) {
+        &.p-focus {
+          background: form.$inputListItemFocusBg;
+        }
+
+        &:hover {
+          background: form.$inputListItemHoverBg;
+        }
+      }
+
+      .p-checkbox {
+        margin: 0;
+      }
+    }
+
+    .p-multiselect-item-group {
+      margin: menu.$submenuHeaderMargin;
+      padding: menu.$submenuHeaderPadding;
+      background: menu.$submenuHeaderBg;
+      font-weight: menu.$submenuHeaderFontWeight;
+    }
+
+    .p-multiselect-empty-message {
+      padding: form.$inputListItemPadding;
+      color: form.$inputListItemTextColor;
+      background: form.$inputListItemBg;
+    }
+  }
+}
+
+.p-input-filled {
+  .p-multiselect {
+    background: form.$inputFilledBg;
+
+    &:not(.p-disabled):hover {
+      background-color: form.$inputFilledHoverBg;
+    }
+
+    &:not(.p-disabled).p-focus {
+      background-color: form.$inputFilledFocusBg;
+    }
+  }
+}
+
+p-multiselect.ng-dirty.ng-invalid > .p-multiselect {
+  @include mixins.invalid-input();
+}

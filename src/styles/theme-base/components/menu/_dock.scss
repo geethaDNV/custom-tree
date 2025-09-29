@@ -1,0 +1,99 @@
+@use '../../mixins';
+
+@use 'themes/mytheme/variables/menu';
+
+.p-dock {
+  .p-dock-list-container {
+    background: menu.$dockBg;
+    border: menu.$dockBorder;
+    padding: menu.$dockPadding;
+    border-radius: menu.$dockBorderRadius;
+
+    .p-dock-list {
+      outline: 0 none;
+    }
+  }
+
+  .p-dock-item {
+    padding: menu.$dockItemPadding;
+    border-radius: menu.$dockItemBorderRadius;
+
+    &.p-focus {
+      @include mixins.focused-listitem();
+    }
+  }
+
+  .p-dock-link {
+    width: menu.$dockActionWidth;
+    height: menu.$dockActionHeight;
+  }
+
+  &.p-dock-top,
+  &.p-dock-bottom {
+    .p-dock-item-second-prev,
+    .p-dock-item-second-next {
+      margin: 0 menu.$dockSecondItemsMargin;
+    }
+
+    .p-dock-item-prev,
+    .p-dock-item-next {
+      margin: 0 menu.$dockFirstItemsMargin;
+    }
+
+    .p-dock-item-current {
+      margin: 0 menu.$dockCurrentItemMargin;
+    }
+  }
+
+  &.p-dock-left,
+  &.p-dock-right {
+    .p-dock-item-second-prev,
+    .p-dock-item-second-next {
+      margin: menu.$dockSecondItemsMargin 0;
+    }
+
+    .p-dock-item-prev,
+    .p-dock-item-next {
+      margin: menu.$dockFirstItemsMargin 0;
+    }
+
+    .p-dock-item-current {
+      margin: menu.$dockCurrentItemMargin 0;
+    }
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .p-dock {
+    &.p-dock-top,
+    &.p-dock-bottom {
+      .p-dock-list-container {
+        overflow-x: auto;
+        width: 100%;
+
+        .p-dock-list {
+          margin: 0 auto;
+        }
+      }
+    }
+
+    &.p-dock-left,
+    &.p-dock-right {
+      .p-dock-list-container {
+        overflow-y: auto;
+        height: 100%;
+
+        .p-dock-list {
+          margin: auto 0;
+        }
+      }
+    }
+
+    .p-dock-list {
+      .p-dock-item {
+        transform: none;
+        margin: 0;
+      }
+    }
+  }
+}
