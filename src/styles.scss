@@ -1,2 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
 @use './styles/styles.scss' as *;
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+:root {
+  --dnv-font-base-unitless: 12;
+  --dnv-font-base: 12px;
+  --dnv-font-button-l: 14px;
+  --dnv-font-button-s: 12px;
+  
+  // Primary color palette
+  --primary-500: #003591;
+  --primary-600: #0f204b;
+  --primary-700: #0C1A3D;
+}
+
+html {
+  font-size: 14px;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+body {
+    padding: 20px;
+}
+
+
+@import './app/base';

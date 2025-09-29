@@ -37,7 +37,7 @@ export class TreeDropdownComponent implements OnChanges, OnInit {
   enableVirtualScroll = input<boolean>(true);
   virtualScrollThreshold = input<number>(500);
   virtualScrollItemHeight = input<number>(40);
-  virtualScrollHeight = input<string>('400px');
+  virtualScrollHeight = input<string>('280px');
 
   selectionChange = output<{
     changedNode?: CustomTreeNode;

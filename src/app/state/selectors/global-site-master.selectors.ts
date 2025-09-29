@@ -1,3 +1,4 @@
+import { CustomTreeNode } from '../../models/custom-tree';
 import { Selector } from '@ngxs/store';
 
 
@@ -5,6 +6,24 @@ import { SiteMasterListItemModel } from '../../models/site-master';
 import { GlobalState, GlobalStateModel } from '../global.state';
 
 export class GlobalSiteMasterSelectors {
+  @Selector([GlobalSiteMasterSelectors._filterSites])
+  static filterSites(filterSites: number[]): number[] {
+    return filterSites;
+  }
+
+  @Selector([GlobalSiteMasterSelectors._dataSites])
+  static dataSites(dataSites: CustomTreeNode[]): CustomTreeNode[] {
+    return dataSites;
+  }
+  @Selector([GlobalState])
+  private static _filterSites(state: GlobalStateModel): number[] {
+    return state.filterSites;
+  }
+
+  @Selector([GlobalState])
+  private static _dataSites(state: GlobalStateModel): CustomTreeNode[] {
+    return state.dataSites;
+  }
   @Selector([GlobalSiteMasterSelectors._siteMasterList])
   static siteMasterList(
     siteMasterList: SiteMasterListItemModel[],

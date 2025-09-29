@@ -1,21 +1,33 @@
-
 @if (siteMasterLoaded()) {
-  <h2>Site Master List</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Site Name</th>
-        <th>Company</th>
-        <th>City</th>
-        <th>Country</th>
-        <th>Address</th>
-        <th>State</th>
-        <th>Zip</th>
-      </tr>
-    </thead>
-    <tbody>
-      @for (site of siteMasterList(); track site.id) {
+<div class="tree-dropdown-container">
+  <shared-tree-dropdown
+    [ariaLabel]="'Select sites'"
+    [expandedState]="latestExpandedState"
+    [nodes]="siteData"
+    [placeholder]="'Select sites'"
+    [selectedIds]="filterSites()"
+    (expandedStateChange)="onExpandedStateChange($event)"
+    (selectionChange)="onSelectionChange($event)"
+  >
+  </shared-tree-dropdown>
+</div>
+<h2>Site Master List</h2>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Site Name</th>
+      <th>Company</th>
+      <th>City</th>
+      <th>Country</th>
+      <th>Address</th>
+      <th>State</th>
+      <th>Zip</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (site of siteMasterList(); track site.id) {
+      @if (filterSites().length === 0 || filterSites().includes(site.id)) {
         <tr>
           <td>{{ site.id }}</td>
           <td>{{ site.siteName }}</td>
@@ -27,8 +39,9 @@
           <td>{{ site.siteZip }}</td>
         </tr>
       }
-    </tbody>
-  </table>
+    }
+  </tbody>
+</table>
 } @else {
-  <p>Loading site data...</p>
+<p>Loading site data...</p>
 }

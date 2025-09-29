@@ -5,10 +5,12 @@ import { Observable } from 'rxjs';
 
 import {
   LoadGlobalSiteMasterList,
-  ResetGlobalSiteMasterState,
+  UpdateOverviewListFilterByKey,
 } from '../actions';
 import { GlobalSiteMasterSelectors } from '../selectors';
 import { SiteMasterListItemModel } from '../../models/site-master';
+import { OverviewFilterTypes } from '../constants/overview-filter.constants';
+import { CustomTreeNode } from '../../models/custom-tree';
 
 @Injectable({ providedIn: 'root' })
 export class GlobalSiteMasterStoreService {
@@ -26,11 +28,29 @@ export class GlobalSiteMasterStoreService {
     return this.store.select(GlobalSiteMasterSelectors.siteMasterLoaded);
   }
 
+  get dataSites(): Signal<CustomTreeNode[]> {
+    return this.store.selectSignal(GlobalSiteMasterSelectors.dataSites);
+  }
+
+  get dataSites$(): Observable<CustomTreeNode[]> {
+    return this.store.select(GlobalSiteMasterSelectors.dataSites);
+  }
+
+  get filterSites(): Signal<number[]> {
+    return this.store.selectSignal(GlobalSiteMasterSelectors.filterSites);
+  }
+
+  get filterSites$(): Observable<number[]> {
+    return this.store.select(GlobalSiteMasterSelectors.filterSites);
+  }
+
   @Dispatch()
   loadGlobalSiteMasterList(): any {
     return new LoadGlobalSiteMasterList();
   }
 
   @Dispatch()
-  resetSiteMasterState = () => new ResetGlobalSiteMasterState();
+  updateOverviewListFilterByKey(data: unknown, key: OverviewFilterTypes) {
+    return new UpdateOverviewListFilterByKey(data, key);
+  }
 }

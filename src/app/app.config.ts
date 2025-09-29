@@ -11,11 +11,24 @@ import {
 import { NgxsModule } from '@ngxs/store';
 import { NgxsDispatchPluginModule } from '@ngxs-labs/dispatch-decorator';
 import { GlobalState } from './state/global.state';
+import { providePrimeNG } from 'primeng/config';
+import MyPreset from './my-preset';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideHttpClient(),
     provideZoneChangeDetection({ eventCoalescing: true }),
+     providePrimeNG({
+        theme: {
+            preset: MyPreset,
+            options: {
+                cssLayer: {
+                    name: 'primeng',
+                    order: 'primeng, app-styles'
+                }
+            }
+        }
+    }),
     provideRouter(routes),
      importProvidersFrom(
       NgxsModule.forRoot(

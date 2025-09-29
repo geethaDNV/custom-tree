@@ -8,7 +8,8 @@ import {
   signal,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ScrollerModule } from 'primeng/scroller';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+
 import { CustomTreeNode } from '../models/custom-tree';
 
 
@@ -22,92 +23,95 @@ interface FlatTreeNode extends CustomTreeNode {
 @Component({
   selector: 'shared-virtual-tree',
   standalone: true,
-  imports: [CommonModule, FormsModule, ScrollerModule],
+  imports: [CommonModule, FormsModule, ScrollingModule],
   template: `
     <div class="virtual-tree-container">
       @if (visibleNodes().length === 0) {
         <div class="empty-state">No nodes to display</div>
       } @else {
-        <p-virtualScroller
-          styleClass="virtual-tree-scroller"
+        <cdk-virtual-scroll-viewport
+          class="virtual-tree-scroller"
           [itemSize]="itemHeight()"
-          [lazy]="false"
-          [scrollHeight]="scrollHeight()"
-          [items]="visibleNodes()">
-          <ng-template let-item pTemplate="item">
-            <div class="tree-node">
-              <div
-                class="node-content"
-                [style.padding-left.px]="
-                  (item?.depth ?? item?.level ?? 0) * 20
-                ">
-                @if (item?.children && item.children.length > 0) {
-                  <button
-                    class="expand-toggle"
-                    type="button"
-                    [attr.aria-expanded]="item.expanded"
-                    (click)="toggleExpansion(item); $event.stopPropagation()">
-                    @if (!item.expanded) {
-                      <svg
-                        fill="none"
-                        height="18"
-                        viewBox="0 0 18 18"
-                        width="18"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          d="M7 5l4 4-4 4"
-                          stroke="#1a1a1a"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2" />
-                      </svg>
-                    }
-                    @if (item.expanded) {
-                      <svg
-                        fill="none"
-                        height="18"
-                        viewBox="0 0 18 18"
-                        width="18"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          d="M5 7l4 4 4-4"
-                          stroke="#1a1a1a"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2" />
-                      </svg>
-                    }
-                  </button>
-                } @else {
-                  <span class="expand-spacer"></span>
-                }
-                <input
-                  class="node-checkbox"
-                  type="checkbox"
-                  [attr.aria-label]="'Select ' + (item?.label || 'item')"
-                  [checked]="item?.selected || false"
-                  [id]="'checkbox-' + (item?.key || '')"
-                  [indeterminate]="item?.indeterminate || false"
-                  (change)="onCheckboxChange(item, $event)" />
-                <label
-                  class="node-label"
-                  [for]="'checkbox-' + (item?.key || '')">
-                  {{ item?.label || 'Unknown' }}
-                </label>
-              </div>
+          [style.height]="scrollHeight()">
+          <div *cdkVirtualFor="let item of visibleNodes(); trackBy: trackByKey" class="tree-node">
+            <div
+              class="node-content"
+              [style.padding-left.px]="
+                (item?.depth ?? item?.level ?? 0) * 20
+              ">
+              @if (item.children && item.children.length > 0) {
+                <button
+                  class="expand-toggle"
+                  type="button"
+                  [attr.aria-expanded]="item.expanded"
+                  (click)="toggleExpansion(item); $event.stopPropagation()">
+                  @if (!item.expanded) {
+                    <svg
+                      fill="none"
+                      height="18"
+                      viewBox="0 0 18 18"
+                      width="18"
+                      xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M7 5l4 4-4 4"
+                        stroke="#1a1a1a"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2" />
+                    </svg>
+                  }
+                  @if (item.expanded) {
+                    <svg
+                      fill="none"
+                      height="18"
+                      viewBox="0 0 18 18"
+                      width="18"
+                      xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M5 7l4 4 4-4"
+                        stroke="#1a1a1a"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2" />
+                    </svg>
+                  }
+                </button>
+              } @else {
+                <span class="expand-spacer"></span>
+              }
+              <input
+                class="node-checkbox"
+                type="checkbox"
+                [attr.aria-label]="'Select ' + (item?.label || 'item')"
+                [checked]="item?.selected || false"
+                [id]="'checkbox-' + (item?.key || '')"
+                [indeterminate]="item?.indeterminate || false"
+                (change)="onCheckboxChange(item, $event)" />
+              <label
+                class="node-label"
+                [for]="'checkbox-' + (item?.key || '')">
+                {{ item?.label || 'Unknown' }}
+              </label>
             </div>
-          </ng-template>
-        </p-virtualScroller>
+          </div>
+        </cdk-virtual-scroll-viewport>
       }
     </div>
   `,
   styleUrls: ['./custom-tree.component.scss'],
   styles: [
     `
+      .virtual-tree-container {
+        box-sizing: border-box;
+      }
       .virtual-tree-container .virtual-tree-scroller {
         border: 1px solid #d1d5db;
         border-radius: 0.375rem;
         background: white;
+        box-sizing: border-box;
+      }
+      .virtual-tree-container .virtual-tree-scroller .cdk-virtual-scroll-content-wrapper {
+        display: block;
       }
       .virtual-tree-container .tree-node {
         border-bottom: 1px solid #f3f4f6;
@@ -185,7 +189,7 @@ export class VirtualTreeComponent {
   nodes = input<CustomTreeNode[]>([]);
   level = input<number>(0);
   itemHeight = input<number>(40);
-  scrollHeight = input<string>('400px');
+  scrollHeight = input<string>('280px');
 
   selectionChange = output<{
     changedNode: CustomTreeNode;
@@ -197,6 +201,11 @@ export class VirtualTreeComponent {
   visibleNodes = computed(() =>
     this.flatNodes().filter((node) => node.visible),
   );
+
+  // Track by function for virtual scrolling performance
+  trackByKey = (index: number, item: FlatTreeNode): string => {
+    return item.key;
+  };
 
   // Debug getters
   get debugFlatNodesCount(): number {

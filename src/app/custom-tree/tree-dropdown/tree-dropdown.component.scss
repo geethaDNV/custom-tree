@@ -80,29 +80,31 @@
 }
 
 .tree-dropdown-panel {
-    background: #fff;
-    font-family: "Nunito Sans", "Segoe UI", Arial, sans-serif;
-    color: #222;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    background: #f3f2f2;
-    border: 1.5px solid #dee2e6;
-    border-radius: 14px;
-    box-shadow: 0 8px 32px rgba(0, 115, 230, 0.10);
-    padding: 0;
-    max-height: 450px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-    display: flex;
-    flex-direction: column;
+  background: #fff;
+  font-family: "Nunito Sans", "Segoe UI", Arial, sans-serif;
+  color: #222;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: #f3f2f2;
+  border: 1.5px solid #dee2e6;
+  border-radius: 14px;
+  box-shadow: 0 8px 32px rgba(0, 115, 230, 0.10);
+  padding: 0;
+  max-height: 450px;
+  min-height: 300px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
 }
 
 .tree-dropdown-panel-inner {
-    overflow-y: auto;
-    overflow-x: hidden;
-    max-height: 360px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 360px;
+  min-height: 200px;
 }
 
 .tree-all-option {
@@ -316,10 +318,10 @@
     align-items: center;
 }
 
-.p-tooltip .p-tooltip-text, .custom-tooltip {
-  margin-top: 8px !important;
-  margin-bottom: 0 !important;
-}
+// .p-tooltip .p-tooltip-text, .custom-tooltip {
+//   margin-top: 8px !important;
+//   margin-bottom: 0 !important;
+// }
 
 :host ::ng-deep .node-checkbox, .tree-all-option input[type='checkbox'] {
   box-sizing: border-box;
